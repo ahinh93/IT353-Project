@@ -1,36 +1,35 @@
-	DROP TABLE it353finalproject;
+drop table weeklywinners;
+drop table cart;
+drop table media;
+drop table users;
 
-	CREATE TABLE it353finalproject.users
-	(
-		email		VARCHAR(50) not null primary key (START WITH 1, INCREMENT BY 1),
-		password	VARCHAR(30) not null,
-		fullname	VARCHAR(100) not null,
-		subscribed	BOOLEAN default false,
-		userlevel	VARCHAR(30) not null,
-		phonenumber	VARCHAR(20) not null
-	);
+CREATE TABLE users
+(
+email		VARCHAR(50) not null constraint email_pk primary key,
+password	VARCHAR(30) not null,
+fullname	VARCHAR(100) not null,
+subscribed	BOOLEAN default false,
+userlevel	VARCHAR(30) not null,
+phonenumber	VARCHAR(20) not null
+);
 
-	CREATE TABLE it353finalproject.media
-	(
-		uid int not null primary key AUTO_INCREMENT,
-		url VARCHAR(500) not null,
-		price double(10,2) not null default (0.00),
-		author VARCHAR(100),
-		FOREIGN KEY (author) REFERENCES users(email)
-	);
+CREATE TABLE media
+(
+uid int not null generated always as identity constraint media_pk primary key,
+url VARCHAR(500) not null,
+price double not null,
+author VARCHAR(50) references users(email)
+);
 
-	CREATE TABLE it353finalproject.weeklywinners
-	(
-		win_date date primary key,
-		winner_media_id int,
-		FOREIGN KEY (winner_media_id) REFERENCES media(uid)	
-	);
+CREATE TABLE weeklywinners
+(
+win_date date constraint win_key primary key,
+winner_media_id int references media(uid)
+);
 
-	CREATE TABLE it353finalproject.cart
-	(
-		cart_uid	int primary key AUTO_INCREMENT,
-		email		VARCHAR(50),
-		media_id	int,
-		FOREIGN KEY (email) REFERENCES users(email),
-		FOREIGN KEY (media_id) REFERENCES media(uid)	
-	);
+CREATE TABLE cart
+(
+cart_uid int not null generated always as identity constraint cart_key primary key,
+email VARCHAR(50) references users(email),
+media_id int references media(uid)
+);
