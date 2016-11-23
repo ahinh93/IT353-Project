@@ -5,11 +5,10 @@
  */
 package Controller;
 
-import java.io.File;
-import java.io.InputStream;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.Part;
+import model.Media;
 
 
 
@@ -20,18 +19,30 @@ import javax.servlet.http.Part;
 @ManagedBean
 @SessionScoped
 public class UploadController {
-   private Part file;
+    private String response;
+    private Media media;
 
-   public void upload(){
-       
-   }
-   
-   
-    public Part getFile() {
-        return file;
+    public UploadController(){
+        media = new Media();
+    }
+    
+    
+    
+    public String getResponse() {
+        return response;
     }
 
-    public void setFile(Part file) {
-        this.file = file;
+    public void setResponse(String response) {
+        this.response = response;
     }
+
+    public Media getMedia() {
+        return media;
+    }
+
+    public void setMedia(Media media) {
+        this.media = media;
+    }
+     
+   
 }
