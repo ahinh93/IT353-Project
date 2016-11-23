@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Upload your media!</title>
+    </h:head>
+    <h:body>
+        <h3>Please upload your media here, we appreciate every submission and hope that enjoyed creating it.<br/>
+            Good Luck!</h3>
+        
+        <h:form id="submitMediaForm" enctype="multipart/form-data" >
+            <h:inputFile id="fileSelect" value="#{uploadController.file}"/><br/>
+            <h:commandButton value="Upload" action="#{uploadController.upload}">
+                <f:ajax execute="submitMediaForm" render="imgPreview"/>
+            </h:commandButton><br/>
+            <h:graphicImage id="imgPreview" value="#{uploadController.file}"/> 
+        </h:form>
+    </h:body>
+</html>
+
