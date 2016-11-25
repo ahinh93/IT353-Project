@@ -14,6 +14,17 @@ public class Cart {
     private String email;
     private int mediaID;
 
+    public Cart()
+    {
+        
+    }
+    
+    public Cart(int cartUID, String email, int mediaID)
+    {
+        this.cartUID = cartUID;
+        this.email = email;
+        this.mediaID = mediaID;
+    }
     public int getCartUID() {
         return cartUID;
     }

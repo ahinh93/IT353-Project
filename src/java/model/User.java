@@ -15,7 +15,8 @@ public class User {
     private String fullName;
     private boolean subscribed;
     private String phoneNumber;
-
+    private String userlevel;
+    
     public String getEmail() {
         return email;
     }
@@ -54,5 +55,19 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * @return the userlevel
+     */
+    public String getUserlevel() {
+        return userlevel;
+    }
+
+    /**
+     * @param userlevel the userlevel to set
+     */
+    public void setUserlevel(String userlevel) {
+        this.userlevel = userlevel;
     }
 }
