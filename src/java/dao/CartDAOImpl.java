@@ -24,7 +24,7 @@ public class CartDAOImpl implements CartDAO{
 
     @Override
     public Cart getCartById(int id) {
-        String query = "select * from it353finalproject.cart where uid = "+ id;
+        String query = "select * from it353finalproject.cart where cart_uid = "+ id;
         
         Cart aCart;
         try{
