@@ -6,6 +6,7 @@
 package Controller;
 
 import dao.DBHelper;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,10 +42,24 @@ public class UploadController {
       try{
       
             PreparedStatement preparedStmt = DBConn.prepareStatement(query);
-            preparedStmt.setString (1, "http://www.google.com");
+           
             preparedStmt.setDouble (2, 100.00);
             preparedStmt.setString (3, "jalltop@ilstu.edu");
        
+            InputStream inputStream = null; // input stream of the upload file
+            
+            if(media != null){
+                // obtains input stream of the upload file
+                inputStream = media.getInputStream();
+            }
+            
+            if (inputStream != null) {
+//                // fetches input stream of the upload file for the blob column
+                 System.out.println("here");
+                preparedStmt.setBlob(1, inputStream);
+            }
+            
+            
             // execute the preparedstatement
             preparedStmt.execute();
        
@@ -53,7 +68,12 @@ public class UploadController {
       System.err.println("Got an exception!");
       System.err.println(e.getMessage());
     }
-  }
+      
+ }
+      
+      
+      
+  
      
     
     public String getResponse() {
