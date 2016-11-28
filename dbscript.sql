@@ -16,7 +16,7 @@ phonenumber	VARCHAR(20) not null
 CREATE TABLE media
 (
 uid int not null generated always as identity constraint media_pk primary key,
-url mediumblob not null,
+url blob not null,
 price double not null,
 author VARCHAR(50) references users(email)
 );
