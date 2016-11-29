@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import dao.CartDAO;
+import dao.CartDAOImpl;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -12,14 +14,19 @@ import javax.faces.bean.SessionScoped;
  *
  * @author it353f608
  */
-@ManagedBean(name = "cartController")
+@ManagedBean(name = "CartController")
 @SessionScoped
-public class ShoppingController {
+public class CartController {
 
+    CartDAOImpl myDAO = new CartDAOImpl();
     /**
      * Creates a new instance of ShoppingController
      */
-    public ShoppingController() {
+    public CartController() {
     }
     
+    public void checkout()
+    {
+        
+    }
 }

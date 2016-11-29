@@ -9,7 +9,7 @@ email		VARCHAR(50) not null constraint email_pk primary key,
 password	VARCHAR(30) not null,
 fullname	VARCHAR(100) not null,
 subscribed	BOOLEAN default false,
-userlevel	VARCHAR(30) not null,
+userlevel	VARCHAR(30) default 'standard',
 phonenumber	VARCHAR(20) not null
 );
 
