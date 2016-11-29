@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.Date;
 import java.util.ArrayList;
 import model.WeeklyWinners;
 
@@ -15,4 +16,6 @@ import model.WeeklyWinners;
 public interface WeeklyWinnersDAO {
     public ArrayList<WeeklyWinners> findAllWinners();
     public void payout(WeeklyWinners winner);
+    public void getAuthorsForWinners(WeeklyWinners winner, int id);
+    public void payoutForWinner(Date date);
 }

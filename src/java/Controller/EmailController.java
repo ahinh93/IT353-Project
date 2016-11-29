@@ -19,10 +19,15 @@ import javax.mail.internet.MimeMessage;
  * @author it353f608
  */
 public class EmailController {
-    public static void main(String[] args) {
+    
+    public EmailController() {
+    }
+    
+    
+    public String emailWinner(String email,double prizeAmt){
 
         // Recipient's email ID needs to be mentioned.
-        String to = "ahinh93@gmail.com";
+        String to = email;
 
         // Sender's email ID needs to be mentioned
         String from = "ahinh@ilstu.edu";
@@ -41,7 +46,7 @@ public class EmailController {
         // Get the default Session object.
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("ahinh@ilstu.edu", "your password");
+                return new PasswordAuthentication("ahinh@ilstu.edu", "46mr4bpbdaY");
             }
         });
 
@@ -57,17 +62,21 @@ public class EmailController {
                     new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("Congratulations!");
+            message.setSubject("Congratulations, you have won this week!");
 
             // Send the actual HTML message, as big as you like
-            message.setContent("<h1>You have been promoted to the VP of Student Affairs!</h1>",
+            message.setContent("<h1>You have been chosen as the winner for this weeks selections.</h1>"
+                    + "<p>We get thousands of submissions a day, this is no small feat be proud and please accept this small token of our appreciation.<br>"
+                    + "Enjoy the amount of $"+String.format("%.2f", prizeAmt)+".</p>",
                     "text/html");
 
             // Send message
             Transport.send(message);
             System.out.println("Sent message successfully....");
+            return "success";
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
+        return "failure";
     }
 }

@@ -7,6 +7,7 @@ package Controller;
 
 import dao.WeeklyWinnersDAOImpl;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -80,16 +81,38 @@ public class WeeklyWinnersController {
         //then calculate their prize amount 
         //then send them an email with this information.
         
-        for(WeeklyWinners winnerToPay : winners){
-            if(winnerToPay.getAuthor().equals(payoutTo)){
-               winner = winnerToPay;
-                break;
-            }
+        List<WeeklyWinners> list = getListsAvailDates();
+        String winnerEmail = "";
+        Date toUpdateDate = null;
+        System.out.println("size: "+list.size());
+        for(int i=0;i<list.size();i++){
+            System.out.println(list.get(i).getDate().toString()+" == "+payoutTo);
+            System.out.println(list.get(i).getDate().toString().equals(payoutTo));
+           if(list.get(i).getDate().toString().equals(payoutTo)){
+               toUpdateDate = list.get(i).getDate();
+               winnerEmail = list.get(i).getAuthor();
+               break;
+           }
         }
         
+      
+        System.out.println("winner email "+winnerEmail);
         //email is now winner.author
+        EmailController ec = new EmailController();
+        if("success".equals(ec.emailWinner(winnerEmail, 50))){
+            //update this entry to show it has been paid
+            updatePaidForDate(toUpdateDate);
+        }
         
         
-        return "failedupload.xhtml";
+        return "prizesent.xhtml";
+    }
+    
+    public void updatePaidForDate(Date date){
+        
+        WeeklyWinnersDAOImpl winnerDAO = new WeeklyWinnersDAOImpl();
+        winnerDAO.payoutForWinner(date);
+        
+        
     }
 }

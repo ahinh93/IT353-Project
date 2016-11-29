@@ -6,7 +6,7 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -61,7 +61,7 @@ public class WeeklyWinnersDAOImpl implements WeeklyWinnersDAO{
     public void payout(WeeklyWinners winner) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+    @Override
     public void getAuthorsForWinners(WeeklyWinners winner, int id){
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
         String myDB = "jdbc:derby://localhost:1527/it353finalproject";
@@ -91,4 +91,30 @@ public class WeeklyWinnersDAOImpl implements WeeklyWinnersDAO{
        
     }
     
+    @Override
+    public void payoutForWinner(Date date){
+      DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String query = "upadte weeklywinners set beenpaid=true WHERE date="+date;
+        Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
+        
+       
+        
+        try{
+            Statement stmt1 = DBConn.createStatement();
+            int row = stmt1.executeUpdate(query);
+            
+            System.out.println("row: "+row);
+            
+            stmt1.close();
+            
+        }catch(Exception e){
+            System.err.println("Error: Problem with SQL.");
+            e.printStackTrace();
+        }
+        
+        
+        
+        
+    }
 }
