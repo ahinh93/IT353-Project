@@ -36,6 +36,17 @@
                     <h:outputText value="#{aRow.beenpaid}"/>  
             </h:column>
         </h:dataTable>
+        
+       <h:form>
+         <h3>Who would you like to pay?</h3> 
+         
+         <h:selectOneMenu value="#{weeklyWinnersController.payoutTo}">
+            <f:selectItems value="#{weeklyWinnersController.listsAvailDates}"
+                    var="winner" itemValue="#{winner}" itemLabel="#{winner.date}" />
+        </h:selectOneMenu><br/>
+         <h:commandButton value="Submit" action="result" />
+      </h:form> 		
+        
     </h:body>
 </html>
 

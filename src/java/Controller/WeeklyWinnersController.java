@@ -7,6 +7,7 @@ package Controller;
 
 import dao.WeeklyWinnersDAOImpl;
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import model.WeeklyWinners;
@@ -19,8 +20,36 @@ import model.WeeklyWinners;
 @SessionScoped
 public class WeeklyWinnersController {
     
-    WeeklyWinners winner;
-    ArrayList winners;
+    private WeeklyWinners winner;
+    private ArrayList<WeeklyWinners> winners;
+    private String payoutTo;
+    private List<WeeklyWinners> listsAvailDates;
+
+    public List<WeeklyWinners> getListsAvailDates() {
+        if(winners == null || winners.isEmpty()){
+            getWinners();
+        }
+        listsAvailDates = new ArrayList<WeeklyWinners>();
+        for(WeeklyWinners weekWin : winners){
+            if(!weekWin.isBeenpaid()){
+                listsAvailDates.add(weekWin);
+            }
+        }
+        
+        return listsAvailDates;
+    }
+
+    public void setListsAvailDates(List<WeeklyWinners> listsAvailDates) {
+        this.listsAvailDates = listsAvailDates;
+    }
+
+    public String getPayoutTo() {
+        return payoutTo;
+    }
+
+    public void setPayoutTo(String payoutTo) {
+        this.payoutTo = payoutTo;
+    }
 
     public ArrayList<WeeklyWinners> getWinners() {
         WeeklyWinnersDAOImpl daoImp = new WeeklyWinnersDAOImpl();
@@ -40,4 +69,5 @@ public class WeeklyWinnersController {
     public WeeklyWinnersController(){
         winner = new WeeklyWinners();
     }
+    
 }
