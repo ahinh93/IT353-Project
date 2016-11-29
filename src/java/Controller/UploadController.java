@@ -35,9 +35,9 @@ public class UploadController {
     }
     
     public String upload(){
-        if(user == null){
-            return "failedupload.xhtml";
-        }
+//        if(user == null){
+//            return "failedupload.xhtml";
+//        }
        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
        String query = "insert into media (url, price, author)"

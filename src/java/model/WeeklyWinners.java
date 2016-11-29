@@ -6,16 +6,30 @@
 package model;
 
 import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Jesse
  */
+@ManagedBean(name = "WeeklyWinners")
+@SessionScoped
 public class WeeklyWinners {
     private Date date;
-    private String author;
+    private int mediaid;
     private boolean beenpaid;
+    
+    public WeeklyWinners(){
+    
+    }
 
+    public WeeklyWinners(Date date, int mediaid, boolean beenpaid){
+        this.date = date;
+        this.mediaid = mediaid;
+        this.beenpaid = beenpaid;
+    }
+    
     public boolean isBeenpaid() {
         return beenpaid;
     }
@@ -31,12 +45,13 @@ public class WeeklyWinners {
     public void setDate(Date date) {
         this.date = date;
     }
-
-    public String getAuthor() {
-        return author;
+    
+    public int getMediaid() {
+        return mediaid;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setMediaid(int mediaid) {
+        this.mediaid = mediaid;
     }
+  
 }
