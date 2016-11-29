@@ -24,7 +24,8 @@ author VARCHAR(50) references users(email)
 CREATE TABLE weeklywinners
 (
 win_date date constraint win_key primary key,
-winner_media_id int references media(uid)
+winner_media_id int references media(uid),
+beenpaid boolean default false
 );
 
 CREATE TABLE cart

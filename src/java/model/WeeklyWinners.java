@@ -14,6 +14,15 @@ import java.util.Date;
 public class WeeklyWinners {
     private Date date;
     private String author;
+    private boolean beenpaid;
+
+    public boolean isBeenpaid() {
+        return beenpaid;
+    }
+
+    public void setBeenpaid(boolean beenpaid) {
+        this.beenpaid = beenpaid;
+    }
 
     public Date getDate() {
         return date;

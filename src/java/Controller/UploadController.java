@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.Part;
 import model.Media;
+import model.User;
 
 
 
@@ -27,12 +28,16 @@ import model.Media;
 public class UploadController {
     private String response;
     private Part media;
+    private User user;
 
     public UploadController(){
         
     }
     
-    public void upload(){
+    public String upload(){
+        if(user == null){
+            return "failedupload.xhtml";
+        }
        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
        String query = "insert into media (url, price, author)"
@@ -67,14 +72,11 @@ public class UploadController {
         } catch (Exception e) {
       System.err.println("Got an exception!");
       System.err.println(e.getMessage());
+      return "failedupload.xhtml";
     }
-      
+      return "successfulupload.xhtml";
  }
-      
-      
-      
   
-     
     
     public String getResponse() {
         return response;
