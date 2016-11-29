@@ -76,9 +76,18 @@ public class WeeklyWinnersController {
         if(payoutTo == null){
             return "failedupload.xhtml";
         }
+        //need to get the email address of the author of the weeklywinner
+        //then calculate their prize amount 
+        //then send them an email with this information.
         
+        for(WeeklyWinners winnerToPay : winners){
+            if(winnerToPay.getAuthor().equals(payoutTo)){
+               winner = winnerToPay;
+                break;
+            }
+        }
         
-        
+        //email is now winner.author
         
         
         return "failedupload.xhtml";
