@@ -11,11 +11,10 @@
             Good Luck!</h3>
         
         <h:form id="submitMediaForm" enctype="multipart/form-data" >
-            <h:inputFile id="fileSelect" value="#{uploadController.file}"/><br/>
+            <h:inputFile id="fileSelect" value="#{uploadController.media}"/><br/>
             <h:commandButton value="Upload" action="#{uploadController.upload}">
                 <f:ajax execute="submitMediaForm" render="imgPreview"/>
             </h:commandButton><br/>
-            <h:graphicImage id="imgPreview" value="#{uploadController.file}"/> 
         </h:form>
     </h:body>
 </html>
