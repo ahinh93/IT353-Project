@@ -13,7 +13,7 @@
         <h:form id="submitMediaForm" enctype="multipart/form-data" >
             <h:inputFile id="fileSelect" value="#{uploadController.media}"/><br/>
             <h:commandButton value="Upload" action="#{uploadController.upload}">
-                <f:ajax execute="submitMediaForm" render="imgPreview"/>
+                <f:ajax execute="submitMediaForm" />
             </h:commandButton><br/>
         </h:form>
     </h:body>

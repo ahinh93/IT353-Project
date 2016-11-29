@@ -8,7 +8,7 @@
     </h:head>
     <h:body>
         Here is a table of the weekly winners.<br/>
-        
+        <h:form id="payoutForm">
         <h:dataTable id="winnersTable" value="#{weeklyWinnersController.winners}" var="aRow"
                      border="1" cellpadding="2" cellspacing="0">
             <h:column>
@@ -37,16 +37,18 @@
             </h:column>
         </h:dataTable>
         
-       <h:form>
          <h3>Who would you like to pay?</h3> 
          
          <h:selectOneMenu value="#{weeklyWinnersController.payoutTo}">
-            <f:selectItems value="#{weeklyWinnersController.listsAvailDates}"
-                    var="winner" itemValue="#{winner}" itemLabel="#{winner.date}" />
+            <f:selectItem itemValue="---" itemLabel="Please select" />
+             <f:selectItems value="#{weeklyWinnersController.listsAvailDates}"
+                            var="winner" itemValue="#{winner.date}" itemLabel="#{winner.date}" />
         </h:selectOneMenu><br/>
-         <h:commandButton value="Submit" action="result" />
-      </h:form> 		
+        <h:commandButton value="Payout" action="#{weeklyWinnersController.payoutWinner()}"/>
+          
         
+      </h:form> 		
+       
     </h:body>
 </html>
 

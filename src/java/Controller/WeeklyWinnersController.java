@@ -70,4 +70,17 @@ public class WeeklyWinnersController {
         winner = new WeeklyWinners();
     }
     
+
+    public String payoutWinner(){
+        
+        if(payoutTo == null){
+            return "failedupload.xhtml";
+        }
+        
+        
+        
+        
+        
+        return "failedupload.xhtml";
+    }
 }
