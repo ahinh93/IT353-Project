@@ -6,6 +6,7 @@
 package Controller;
 
 import java.util.Properties;
+import java.util.Random;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -63,7 +64,10 @@ public class EmailController {
 
             // Set Subject: header field
             message.setSubject("Congratulations, you have won this week!");
-
+            
+            
+            
+            
             // Send the actual HTML message, as big as you like
             message.setContent("<h1>You have been chosen as the winner for this weeks selections.</h1>"
                     + "<p>We get thousands of submissions a day, this is no small feat be proud and please accept this small token of our appreciation.<br>"

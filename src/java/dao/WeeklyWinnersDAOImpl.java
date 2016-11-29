@@ -103,9 +103,7 @@ public class WeeklyWinnersDAOImpl implements WeeklyWinnersDAO{
         try{
             Statement stmt1 = DBConn.createStatement();
             row = stmt1.executeUpdate(query);
-                        
-            stmt1.close();
-            
+            stmt1.close();  
         }catch(Exception e){
             System.err.println("Error: Problem with SQL.");
             e.printStackTrace();

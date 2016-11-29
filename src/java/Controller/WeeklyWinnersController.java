@@ -9,6 +9,7 @@ import dao.WeeklyWinnersDAOImpl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import model.WeeklyWinners;
@@ -99,7 +100,13 @@ public class WeeklyWinnersController {
         System.out.println("winner email "+winnerEmail);
         //email is now winner.author
         EmailController ec = new EmailController();
-        if("success".equals(ec.emailWinner(winnerEmail, 50))){
+        
+        double min = 10.00;
+        double max = 9934.99;
+        Random r = new Random();
+        double pmt = min + (max - min) * r.nextDouble();
+        
+        if("success".equals(ec.emailWinner(winnerEmail, pmt))){
             //update this entry to show it has been paid
             updatePaidForDate(toUpdateDate);
         }
