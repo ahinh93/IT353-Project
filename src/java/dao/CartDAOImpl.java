@@ -18,7 +18,7 @@ import model.Cart;
 public class CartDAOImpl implements CartDAO{
 
     @Override
-    public int createCart(Cart cart) {
+    public int createCart() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

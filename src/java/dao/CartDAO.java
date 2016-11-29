@@ -11,6 +11,6 @@ import model.Cart;
  * @author it353f608
  */
 public interface CartDAO {
-    public int createCart(Cart cart);
+    public int createCart();
     public Cart getCartById(int id);
 }
