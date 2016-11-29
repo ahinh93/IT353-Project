@@ -93,28 +93,23 @@ public class WeeklyWinnersDAOImpl implements WeeklyWinnersDAO{
     
     @Override
     public void payoutForWinner(Date date){
-      DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
         String myDB = "jdbc:derby://localhost:1527/it353finalproject";
-        String query = "upadte weeklywinners set beenpaid=true WHERE date="+date;
+        String query = "update weeklywinners set beenpaid=true WHERE win_date=('"+date.toString()+"')";
+        
+        int row = -453;
         Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
-        
        
-        
         try{
             Statement stmt1 = DBConn.createStatement();
-            int row = stmt1.executeUpdate(query);
-            
-            System.out.println("row: "+row);
-            
+            row = stmt1.executeUpdate(query);
+                        
             stmt1.close();
             
         }catch(Exception e){
             System.err.println("Error: Problem with SQL.");
             e.printStackTrace();
         }
-        
-        
-        
         
     }
 }
