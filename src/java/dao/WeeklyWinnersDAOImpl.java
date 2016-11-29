@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import model.Media;
 import model.WeeklyWinners;
 
 /**
@@ -42,6 +43,7 @@ public class WeeklyWinnersDAOImpl implements WeeklyWinnersDAO{
                 paid = rs.getBoolean("beenpaid");
                 
                 winner = new WeeklyWinners(date,winnerid,paid);
+                getAuthorsForWinners(winner, winnerid);
                 allWinners.add(winner);
             }
             rs.close();
@@ -51,12 +53,42 @@ public class WeeklyWinnersDAOImpl implements WeeklyWinnersDAO{
             System.err.println("Error: Problem with SQL.");
             e.printStackTrace();
         }
+        
         return allWinners;
     }
 
     @Override
     public void payout(WeeklyWinners winner) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void getAuthorsForWinners(WeeklyWinners winner, int id){
+        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String query = "select * from media where uid="+id;
+        Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
+        
+       
+        
+        try{
+            Statement stmt1 = DBConn.createStatement();
+            ResultSet rs1 = stmt1.executeQuery(query);
+            String author;
+            
+            while(rs1.next()){
+                author = rs1.getString("author");
+                 winner.setAuthor(author);
+            }
+            
+            rs1.close();
+            stmt1.close();
+            
+        }catch(Exception e){
+            System.err.println("Error: Problem with SQL.");
+            e.printStackTrace();
+        }
+        
+       
     }
     
 }

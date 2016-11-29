@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/web/failedupload.xhtml</file>
-            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/web/uploadpage.xhtml</file>
-            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/src/java/Controller/UploadController.java</file>
-            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/web/successfulupload.xhtml</file>
+            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/web/payroyalties.xhtml</file>
+            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/src/java/model/WeeklyWinners.java</file>
+            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/src/java/dao/WeeklyWinnersDAOImpl.java</file>
         </group>
     </open-files>
 </project-private>

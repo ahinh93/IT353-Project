@@ -5,6 +5,7 @@
  */
 package model;
 
+import dao.WeeklyWinnersDAOImpl;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -19,6 +20,15 @@ public class WeeklyWinners {
     private Date date;
     private int mediaid;
     private boolean beenpaid;
+    private String author;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
     
     public WeeklyWinners(){
     
@@ -28,6 +38,13 @@ public class WeeklyWinners {
         this.date = date;
         this.mediaid = mediaid;
         this.beenpaid = beenpaid;
+    }
+    
+    public WeeklyWinners(Date date, int mediaid, boolean beenpaid, String author){
+        this.date = date;
+        this.mediaid = mediaid;
+        this.beenpaid = beenpaid;
+        this.author = author;
     }
     
     public boolean isBeenpaid() {
