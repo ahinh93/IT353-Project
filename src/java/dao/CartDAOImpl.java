@@ -25,8 +25,7 @@ public class CartDAOImpl implements CartDAO{
 
     @Override
     public ArrayList<Cart> getCartByEmail(String uid) {
-        String query = "select * from cart where email = "+ uid;
-        
+        String query = "select * from cart where email = '"+ uid+"'";
         ArrayList<Cart> myCart = new ArrayList<Cart>();
         DBHelper.loadDriver("org.aoache.derby.jdbc.ClientDriver");
         String myDB = "jdbc:derby://localhost:1527/it353finalproject";
@@ -45,7 +44,7 @@ public class CartDAOImpl implements CartDAO{
             while(rs.next()){
                 //uid = rs.getInt("cartUID");
                 email = rs.getString("email");
-                mediaID = rs.getInt("mediaID");
+                mediaID = rs.getInt("media_ID");
                 
                 item = new Cart(email,mediaID);
                 getItemPrice(item, mediaID);
