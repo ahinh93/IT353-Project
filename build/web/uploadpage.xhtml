@@ -10,7 +10,7 @@
         <h3>Please upload your media here, we appreciate every submission and hope that enjoyed creating it.<br/>
             Good Luck!</h3>
         
-        <h:form id="submitMediaForm" enctype="multipart/form-data" >
+        <h:form id="submitMediaForm"  enctype="multipart/form-data" >
             <h:inputFile id="fileSelect" value="#{uploadController.media}"/><br/>
             <h:commandButton value="Upload" action="#{uploadController.upload}">
                 <f:ajax execute="submitMediaForm" />

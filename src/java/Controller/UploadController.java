@@ -14,7 +14,6 @@ import java.sql.Statement;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.Part;
-import model.Media;
 import model.User;
 
 
@@ -29,6 +28,39 @@ public class UploadController {
     private String response;
     private Part media;
     private User user;
+    private String latestID;
+
+    public String getLatestID() {
+        latestID="";
+        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+       String query = "select * from media";
+      Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
+      
+      try{
+      
+           Statement stmt = DBConn.createStatement();
+           ResultSet rs = stmt.executeQuery(query);
+           
+           while(rs.next()){
+              latestID =""+ rs.getInt("uid");
+           }
+           
+            
+            
+            
+          
+            rs.close();
+            DBConn.close();
+        } catch (Exception e) {
+             System.err.println("Got an exception!");
+             System.err.println(e.getMessage());
+        }
+         return latestID;
+    }
+    public void setLatestID(String latestID) {
+        this.latestID = latestID;
+    }
 
     public UploadController(){
         
@@ -68,7 +100,8 @@ public class UploadController {
             // execute the preparedstatement
             preparedStmt.execute();
        
-               DBConn.close();
+            
+            DBConn.close();
         } catch (Exception e) {
       System.err.println("Got an exception!");
       System.err.println(e.getMessage());
