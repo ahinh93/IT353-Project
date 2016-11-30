@@ -10,7 +10,8 @@ password	VARCHAR(30) not null,
 fullname	VARCHAR(100) not null,
 subscribed	BOOLEAN default false,
 userlevel	VARCHAR(30) default 'standard',
-phonenumber	VARCHAR(20) not null
+phonenumber	VARCHAR(20) not null,
+verified 	BOOLEAN default false
 );
 
 CREATE TABLE media

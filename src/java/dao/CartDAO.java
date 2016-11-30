@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.ArrayList;
 import model.Cart;
 /**
  *
@@ -12,5 +13,5 @@ import model.Cart;
  */
 public interface CartDAO {
     public int createCart();
-    public Cart getCartById(int id);
+    public ArrayList<Cart> getCartByEmail(String email);
 }

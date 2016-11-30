@@ -13,7 +13,7 @@ public class Cart {
     private int cartUID;
     private String email;
     private int mediaID;
-
+    private double price;
     public Cart()
     {
         
@@ -25,6 +25,14 @@ public class Cart {
         this.email = email;
         this.mediaID = mediaID;
     }
+    
+    public Cart(String email, int mediaID)
+    {
+        this.email = email;
+        this.mediaID = mediaID;
+    }
+    
+    
     public int getCartUID() {
         return cartUID;
     }
@@ -47,5 +55,19 @@ public class Cart {
 
     public void setMediaID(int mediaID) {
         this.mediaID = mediaID;
+    }
+
+    /**
+     * @return the price
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
