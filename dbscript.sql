@@ -35,3 +35,30 @@ cart_uid int not null generated always as identity constraint cart_key primary k
 email VARCHAR(50) references users(email),
 media_id int references media(uid)
 );
+
+INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
+VALUES ('ahinh@ilstu.edu','secret','Andrew Hinh',true,'admin','8476685186');
+
+INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
+VALUES ('ashesh@ilstu.edu','huzzah','Amit Shesh',false,'standard','3098881234');
+
+INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
+VALUES ('temp@ilstu.edu','aaaa','Bobby Flay',false,'standard','1234567898');
+
+INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
+VALUES ('jalltop@ilstu.edu','corrralll','Jesse Alltop',true,'admin','3098887777');
+
+INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
+VALUES ('artinstitute@ai.com','artIsLife','Michael Mike',true,'standard','7734871248');
+
+INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
+VALUES ('chou7@ilstu.edu','illnevertell','Cindy H',true,'standard','309887944');
+
+INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
+VALUES ('alltopafi@gmail.com','AFIbaby','Jesse Alltawp',true,'admin','3094561237');
+
+INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
+VALUES ('rdevitt@ilstu.edu','password','Randy Devitt',true,'admin','3098881234');
+
+INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
+VALUES ('jgarc@ilstu.edu','password','Julian Garcia',true,'admin','3091234657');
