@@ -13,13 +13,13 @@ import java.util.ArrayList;
 @SessionScoped
 public class DashboardController {
     
-    private User userBean;    
     private final DashDAO dao = new DashDAOImpl();
+    private boolean loggedIn = false;
+    private User userBean;    
     private WeeklyWinners[] pastWinners = new WeeklyWinners[5];
     private WeeklyWinners[] currentWinners = new WeeklyWinners[5];
     private String searchToken;
-    private String response;
-    private boolean loggedIn = false;
+    private String response;    
     
     public DashboardController() {
     }

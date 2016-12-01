@@ -14,16 +14,28 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        <h:form>
-            
-            
-            Table here<br/>
-            
+        <h:form>            
+            <p:dataTable var="cart" value="#{CartController.myCart}">
+                <p:column headerText="Email">
+                    <h:outputText value="#{cart.email}" />
+                </p:column>
+
+                <p:column headerText="Media ID">
+                    <h:outputText value="#{cart.mediaID}" />
+                </p:column>
+
+                <p:column headerText="Price">
+                    <h:outputText value="$#{cart.price}" />
+                </p:column>
+            </p:dataTable>
             
             <p:growl id="growl" life="2000" />
  
+            Enter the email of the user you want to checkout for<br/>
+            <p:inputText />
+            
             <p:commandLink id="ajax" update="growl" actionListener="#{buttonView.buttonAction}">
-                <h:outputText value="Ajax Submit" />
+                <h:outputText value="Submit" />
             </p:commandLink>
         </h:form>
     </h:body>
