@@ -12,12 +12,11 @@ import java.util.ArrayList;
 @ManagedBean
 @SessionScoped
 public class DashboardController {
-    
-    private final DashDAO dao = new DashDAOImpl();
-    private boolean loggedIn = false;
-    private User userBean;    
+    private User userBean; 
+    private final DashDAO dao = new DashDAOImpl();      
     private WeeklyWinners[] pastWinners = new WeeklyWinners[5];
     private WeeklyWinners[] currentWinners = new WeeklyWinners[5];
+    private boolean loggedIn = false;
     private String searchToken;
     private String response;    
     
@@ -54,10 +53,6 @@ public class DashboardController {
 //        System.arraycopy(list, 0, currentWinners, 0, currentWinners.length);
 //        System.arraycopy(list, currentWinners.length, 
 //                pastWinners, 0, pastWinners.length);
-    }
-    
-    public WeeklyWinners getSpecificWinner() {
-        return dao.getWinner(searchToken);
     }
     
     public String retrievePassword() {
