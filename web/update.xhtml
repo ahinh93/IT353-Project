@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Update Profile</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <h3>Update your Profile: </h3> <br/>
+            Email: <h:outputText id="email" value="#{updateProfileController.email}" />
+            <br/>
+            Password: <h:inputSecret id="password" value="#{updateProfileController.password}" />
+            <br/>
+            Fullname: <h:inputText id="fullname" value="#{updateProfileController.fullname}"/>
+            <br/>
+            Check if you wish to subscribe to our mailing list:          
+            <h:selectBooleanCheckbox value="#{updateProfileController.subscribed}">
+                <f:selectItem id="yes" itemLabel="Yes" itemValue="Yes"></f:selectItem>
+            </h:selectBooleanCheckbox>
+            <br/>
+            Select your user-level:
+            <h:selectOneListbox value="#{profileController.profileBean.userlevel}">
+                <f:selectItem itemValue="Standard" itemLabel="Standard" />
+                <f:selectItem itemValue="Admin" itemLabel="Admin" />
+            </h:selectOneListbox>
+            <br/> 
+            Phone Number: <h:inputText id="phoneNo" value="#{updateProfileController.phoneNo}"/>
+            <br/>            
+            <h:commandButton id="submit" value="Submit" action="#{updateProfileController.updateProfile}"/>
+            <h:outputText value="#{updateProfileController.updateStatus}" />
+        </h:form>
+    </h:body>
+</html>
+

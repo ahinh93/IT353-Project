@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sign Up</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h2>Sign Up: </h2>
+            Email: <h:inputText id="email" value="#{profileController.profileBean.email}" />
+            <br/>
+            Password: <h:inputSecret id="password" value="#{profileController.profileBean.password}" />
+            <br/>
+            Fullname: <h:inputText id="fullname" value="#{profileController.profileBean.fullname}"/>
+            <br/>
+            Check if you wish to subscribe to our mailing list:  
+            <h:selectBooleanCheckbox value="#{profileController.profileBean.subscribed}">
+                <f:selectItem id="yes" itemLabel="Yes" itemValue="Yes"></f:selectItem>
+            </h:selectBooleanCheckbox>
+            <br/>
+            Select your user-level:
+            <h:selectOneListbox value="#{profileController.profileBean.userlevel}">
+                <f:selectItem itemValue="Standard" itemLabel="Standard" />
+                <f:selectItem itemValue="Admin" itemLabel="Admin" />
+            </h:selectOneListbox>
+            <br/>        
+            Phone Number: <h:inputText id="phoneNo" value="#{profileController.profileBean.phoneNo}"/>
+            <br/>
+            <h:commandButton id="submit" value="Submit" action="#{profileController.createProfile}"/>
+        </h:form>
+    </h:body>
+</html>
+
