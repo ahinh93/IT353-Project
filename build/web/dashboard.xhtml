@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            #buttons {
+                outline: black solid thin;
+                padding-bottom: 150px;
+                padding-top: 150px;
+            }
+            
+            #loginStatus {
+                padding-right: 8px;
+                vertical-align: top;
+            }
+        </style>
+    </h:head>
+    
+    <h:body>
+        <div align="right" id="loginStatus">
+            <h:form>
+                <h:commandLink value="Logout" action="#{dashboardController.logout()}" />
+            </h:form>
+        </div><br/>
+        
+        <div id="buttons" align="center">
+            <h:form>  
+                <p:growl id="msgs" showDetail="true" />
+
+                <p:panel id="media" header="Upload Media" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputText
+                            value="Add media to the site" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel id="cart" header="Adding Items to Shopping Cart" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputText
+                            value="Add items to your shopping cart" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel id="checkout" header="Order Checkout" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="10">                      
+                        <h:link value="Proceed to Checkout" outcome="viewcart"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel id="settings" header="Update User Account" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputText
+                            value="Update your account information" />
+                    </h:panelGrid>
+                </p:panel>                
+            </h:form>
+        </div>
+    </h:body>
+</html>

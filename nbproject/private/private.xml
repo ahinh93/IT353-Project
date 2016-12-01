@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/web/payroyalties.xhtml</file>
-            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/src/java/Controller/EmailController.java</file>
-            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/web/index.xhtml</file>
-            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/src/java/Controller/WeeklyWinnersController.java</file>
-            <file>file:/Users/Jesse/Documents/Programming/it353/IT353-Project/src/java/dao/WeeklyWinnersDAOImpl.java</file>
+            <file>file:/I:/NetBeansApps/IT353-Project/web/dashboard.xhtml</file>
+            <file>file:/I:/NetBeansApps/IT353-Project/src/java/Controller/DashboardController.java</file>
+            <file>file:/I:/NetBeansApps/IT353-Project/src/java/Controller/AdminDashController.java</file>
+            <file>file:/I:/NetBeansApps/IT353-Project/src/java/dao/DashDAO.java</file>
+            <file>file:/I:/NetBeansApps/IT353-Project/src/java/dao/DashDAOImpl.java</file>
         </group>
     </open-files>
 </project-private>
