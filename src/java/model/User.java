@@ -17,6 +17,23 @@ public class User {
     private String phoneNumber;
     private String userlevel;
     
+    
+    public User()
+    {
+        
+    }
+    
+    public User(String email, String password, String fullname, String phoneNo,
+            boolean subscribed, String userlevel)
+    {
+        this.email = email;
+        this.password = password;
+        this.fullName = fullname;
+        this.phoneNumber = phoneNo;
+        this.subscribed = subscribed;
+        this.userlevel = userlevel;
+    }
+    
     public String getEmail() {
         return email;
     }

@@ -9,26 +9,26 @@
     <h:body>
         <h:form>
             <h2>Sign Up: </h2>
-            Email: <h:inputText id="email" value="#{profileController.profileBean.email}" />
+            Email: <h:inputText id="email" value="#{userController.bean.email}" />
             <br/>
-            Password: <h:inputSecret id="password" value="#{profileController.profileBean.password}" />
+            Password: <h:inputSecret id="password" value="#{userController.bean.password}" />
             <br/>
-            Fullname: <h:inputText id="fullname" value="#{profileController.profileBean.fullname}"/>
+            Fullname: <h:inputText id="fullname" value="#{userController.bean.fullName}"/>
             <br/>
             Check if you wish to subscribe to our mailing list:  
-            <h:selectBooleanCheckbox value="#{profileController.profileBean.subscribed}">
+            <h:selectBooleanCheckbox value="#{userController.bean.subscribed}">
                 <f:selectItem id="yes" itemLabel="Yes" itemValue="Yes"></f:selectItem>
             </h:selectBooleanCheckbox>
             <br/>
             Select your user-level:
-            <h:selectOneListbox value="#{profileController.profileBean.userlevel}">
+            <h:selectOneListbox value="#{userController.bean.userlevel}">
                 <f:selectItem itemValue="Standard" itemLabel="Standard" />
                 <f:selectItem itemValue="Admin" itemLabel="Admin" />
             </h:selectOneListbox>
             <br/>        
-            Phone Number: <h:inputText id="phoneNo" value="#{profileController.profileBean.phoneNo}"/>
+            Phone Number: <h:inputText id="phoneNo" value="#{userController.bean.phoneNumber}"/>
             <br/>
-            <h:commandButton id="submit" value="Submit" action="#{profileController.createProfile}"/>
+            <h:commandButton id="submit" value="Submit" action="#{userController.createUser}"/>
         </h:form>
     </h:body>
 </html>

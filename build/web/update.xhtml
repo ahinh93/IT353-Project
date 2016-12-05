@@ -10,27 +10,27 @@
 
         <h:form>
             <h3>Update your Profile: </h3> <br/>
-            Email: <h:outputText id="email" value="#{updateProfileController.email}" />
+            Email: <h:outputText id="email" value="#{updateUserController.email}" />
             <br/>
-            Password: <h:inputSecret id="password" value="#{updateProfileController.password}" />
+            Password: <h:inputSecret id="password" value="#{updateUserController.password}" />
             <br/>
-            Fullname: <h:inputText id="fullname" value="#{updateProfileController.fullname}"/>
+            Fullname: <h:inputText id="fullname" value="#{updateUserController.fullname}"/>
             <br/>
             Check if you wish to subscribe to our mailing list:          
-            <h:selectBooleanCheckbox value="#{updateProfileController.subscribed}">
+            <h:selectBooleanCheckbox value="#{updateUserController.subscribed}">
                 <f:selectItem id="yes" itemLabel="Yes" itemValue="Yes"></f:selectItem>
             </h:selectBooleanCheckbox>
             <br/>
             Select your user-level:
-            <h:selectOneListbox value="#{profileController.profileBean.userlevel}">
-                <f:selectItem itemValue="Standard" itemLabel="Standard" />
-                <f:selectItem itemValue="Admin" itemLabel="Admin" />
+            <h:selectOneListbox value="#{userController.bean.userlevel}">
+                <f:selectItem itemValue="standard" itemLabel="Standard" />
+                <f:selectItem itemValue="admin" itemLabel="Admin" />
             </h:selectOneListbox>
             <br/> 
-            Phone Number: <h:inputText id="phoneNo" value="#{updateProfileController.phoneNo}"/>
+            Phone Number: <h:inputText id="phoneNo" value="#{updateUserController.phoneNo}"/>
             <br/>            
-            <h:commandButton id="submit" value="Submit" action="#{updateProfileController.updateProfile}"/>
-            <h:outputText value="#{updateProfileController.updateStatus}" />
+            <h:commandButton id="submit" value="Submit" action="#{updateUserController.updateUser}"/>
+            <h:outputText value="#{updateUserController.updateStatus}" />
         </h:form>
     </h:body>
 </html>
