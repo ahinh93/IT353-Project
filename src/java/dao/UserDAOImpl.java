@@ -135,7 +135,7 @@ public class UserDAOImpl implements UserDAO {
             return bean;
         else
         {
-            return new User();
+            return null;
         }
     }
     

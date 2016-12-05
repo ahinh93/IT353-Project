@@ -12,7 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 import model.User;
 
@@ -32,6 +34,17 @@ public class UploadController {
     private String price;
     private String tags;
 
+    @ManagedProperty("#{loginController}")
+    private LoginController lc;
+
+    public LoginController getLc() {
+        return lc;
+    }
+
+    public void setLc(LoginController lc) {
+        this.lc = lc;
+    }
+    
     public String getPrice() {
         return price;
     }
@@ -63,11 +76,7 @@ public class UploadController {
            while(rs.next()){
               latestID =""+ rs.getInt("uid");
            }
-           
-            
-            
-            
-          
+       
             rs.close();
             DBConn.close();
         } catch (Exception e) {
@@ -85,6 +94,9 @@ public class UploadController {
     }
     
     public String upload(){
+        
+        System.out.println("price: "+price);
+        System.out.println("tags: "+tags);
 //        if(user == null){
 //            return "failedupload.xhtml";
 //        }
@@ -98,9 +110,9 @@ public class UploadController {
       
             PreparedStatement preparedStmt = DBConn.prepareStatement(query);
            
-            preparedStmt.setDouble (2, 100.00);
-            preparedStmt.setString (3, "jalltop@ilstu.edu");
-            preparedStmt.setString(4, "android");
+            preparedStmt.setDouble (2, Double.parseDouble(price));
+            preparedStmt.setString (3, lc.getEmail());
+            preparedStmt.setString(4, tags);
        
             InputStream inputStream = null; // input stream of the upload file
             
