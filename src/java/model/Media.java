@@ -14,15 +14,25 @@ public class Media {
     private String url;
     private double price;
     private String author;
+    private int rating;
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
     public Media(){
     }
     
-    public Media(int uid, String url, double price, String author){
+    public Media(int uid, String url, double price, String author,int rating){
         this.uid = uid;
         this.url = url;
         this.price = price;
         this.author = author;
+        this.rating = rating;
     }
     
     public int getUid() {

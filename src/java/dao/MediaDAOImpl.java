@@ -48,7 +48,7 @@ public class MediaDAOImpl implements MediaDAO{
             
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            int uid;
+            int uid,rating;
             String url, author;
             double price;
             
@@ -57,8 +57,9 @@ public class MediaDAOImpl implements MediaDAO{
                 url = rs.getString("url");
                 price = rs.getDouble("price");
                 author = rs.getString("author");
+                rating = rs.getInt("rating");
                 
-                aMedia = new Media(uid,url,price,author);
+                aMedia = new Media(uid,url,price,author,rating);
                 
                 
             }
