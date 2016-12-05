@@ -52,4 +52,9 @@ public class CartController {
     public void setMyCart(ArrayList<Cart> myCart) {
         this.myCart = myCart;
     }
+    
+    
+    public void addToCart(){
+        System.out.println("here");
+    }
 }

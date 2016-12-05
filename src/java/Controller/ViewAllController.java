@@ -61,7 +61,7 @@ public class ViewAllController {
            
            while(rs.next()){
               Media media = new Media(rs.getInt("uid"),rs.getString("url"),rs.getDouble("price"),
-                      rs.getString("author"),rs.getInt("rating"));
+                      rs.getString("author"),rs.getInt("rating"),rs.getString("tags"));
               
               images.add(media);
            }

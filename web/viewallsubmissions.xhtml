@@ -21,6 +21,7 @@
                     </p:rating>
                         <input type="hidden" name="uidKey" value="#{aRow.uid}"/>
                         <input type="hidden" name="oldRatingKey" value="#{aRow.rating}"/>
+                        <h:button value="Buy Me!" onclick="#{cartController.addToCart}"/>
                     </h:form>
                     
             </h:column>

@@ -27,8 +27,26 @@ import model.User;
 public class UploadController {
     private String response;
     private Part media;
-    private User user;
     private String latestID;
+    
+    private String price;
+    private String tags;
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 
     public String getLatestID() {
         latestID="";
@@ -72,8 +90,8 @@ public class UploadController {
 //        }
        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
-       String query = "insert into media (url, price, author)"
-        + " values (?, ?, ?)";
+       String query = "insert into media (url, price, author, tags)"
+        + " values (?, ?, ?, ?)";
       Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
       
       try{
@@ -82,6 +100,7 @@ public class UploadController {
            
             preparedStmt.setDouble (2, 100.00);
             preparedStmt.setString (3, "jalltop@ilstu.edu");
+            preparedStmt.setString(4, "android");
        
             InputStream inputStream = null; // input stream of the upload file
             
@@ -92,7 +111,6 @@ public class UploadController {
             
             if (inputStream != null) {
 //                // fetches input stream of the upload file for the blob column
-                 System.out.println("here");
                 preparedStmt.setBlob(1, inputStream);
             }
             

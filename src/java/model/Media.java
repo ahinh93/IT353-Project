@@ -15,6 +15,15 @@ public class Media {
     private double price;
     private String author;
     private int rating;
+    private String tags;
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 
     public int getRating() {
         return rating;
@@ -27,12 +36,14 @@ public class Media {
     public Media(){
     }
     
-    public Media(int uid, String url, double price, String author,int rating){
+    
+    public Media(int uid, String url, double price, String author,int rating,String tags){
         this.uid = uid;
         this.url = url;
         this.price = price;
         this.author = author;
         this.rating = rating;
+        this.tags = tags;
     }
     
     public int getUid() {

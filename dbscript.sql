@@ -20,7 +20,8 @@ uid int not null generated always as identity constraint media_pk primary key,
 url blob not null,
 price double not null,
 author VARCHAR(50) references users(email),
-rating int not null
+rating int not null,
+tags varchar(200)
 );
 
 CREATE TABLE weeklywinners

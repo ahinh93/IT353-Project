@@ -49,7 +49,7 @@ public class MediaDAOImpl implements MediaDAO{
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             int uid,rating;
-            String url, author;
+            String url, author,tags;
             double price;
             
             while(rs.next()){
@@ -58,8 +58,9 @@ public class MediaDAOImpl implements MediaDAO{
                 price = rs.getDouble("price");
                 author = rs.getString("author");
                 rating = rs.getInt("rating");
+                tags = rs.getString("tags");
                 
-                aMedia = new Media(uid,url,price,author,rating);
+                aMedia = new Media(uid,url,price,author,rating,tags);
                 
                 
             }
