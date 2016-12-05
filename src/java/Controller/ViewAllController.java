@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import model.Media;
 import org.primefaces.event.RateEvent;
 
@@ -91,14 +92,28 @@ public class ViewAllController {
           
       }catch(Exception e){
           System.err.println("Got an exception");
-          System.err.println(e.getMessage());
+          System.err.println(e.getStackTrace());
       }
      
       
     }
   
-    public void handleRating(){
-        System.out.println("here");
-    }
+    
+    
+   public void onrate(RateEvent rateEvent){
+       int givenRating = ((Integer) rateEvent.getRating()).intValue();
+       String uid = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uidKey");
+       int oldRating = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("oldRatingKey"));
+       
+       double newRating = ((double)givenRating+(double)oldRating)/2;
+       
+       double test = Math.round(newRating);
+       int test1 = (int) test;
+       
+       handleRating(test1,uid);
+   
+   
+   }
+    
     
 }

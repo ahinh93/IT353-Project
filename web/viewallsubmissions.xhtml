@@ -16,9 +16,11 @@
                     <h:graphicImage id="image" width="350" height="300" alt="uploaded image" url="/image?uid=#{aRow.uid}"/><br/>
                     Avg Rating: <h:outputLabel value="#{aRow.rating}"/>
                     <h:form>
-                        <p:rating value="#{aRow.rating}" cancel="false" >
-                        <p:ajax event="rate" listener="#{viewAllController.handleRating(value,aRow.uid)}"/>
+                        <p:rating id="rating" value="#{aRow.rating}" cancel="false" >
+                            <p:ajax event="rate" listener="#{viewAllController.onrate}"/>
                     </p:rating>
+                        <input type="hidden" name="uidKey" value="#{aRow.uid}"/>
+                        <input type="hidden" name="oldRatingKey" value="#{aRow.rating}"/>
                     </h:form>
                     
             </h:column>
