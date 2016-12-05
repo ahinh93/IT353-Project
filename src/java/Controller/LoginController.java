@@ -5,11 +5,11 @@
  */
 package Controller;
 
-import dao.ProfileDAO;
-import dao.ProfileDAOImpl;
+import dao.UserDAO;
+import dao.UserDAOImpl;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import model.ProfileBean;
+import model.User;
 
 /**
  *
@@ -19,7 +19,7 @@ import model.ProfileBean;
 @ManagedBean
 @SessionScoped
 public class LoginController {
-    private ProfileBean profile;
+    private User profile;
     private String email;
     private String password;
     private String response;
@@ -27,19 +27,19 @@ public class LoginController {
 
     public LoginController()
     {
-        profile = new ProfileBean();
+        profile = new User();
     }
     /**
      * @return the profile
      */
-    public ProfileBean getProfile() {
+    public User getUser() {
         return profile;
     }
 
     /**
      * @param profile the profile to set
      */
-    public void setProfile(ProfileBean profile) {
+    public void setProfile(User profile) {
         this.profile = profile;
     }
 
@@ -87,7 +87,7 @@ public class LoginController {
     
     public String findUserEmail()
     {
-        ProfileDAO dao = new ProfileDAOImpl();       
+        UserDAO dao = new UserDAOImpl();       
         profile = dao.findUserEmail(email, password);
         
         if(profile != null)
