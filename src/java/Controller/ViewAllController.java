@@ -22,6 +22,15 @@ public class ViewAllController {
     private List images;
     private int rating;
     private int uid;
+    private String searchTerms;
+
+    public String getSearchTerms() {
+        return searchTerms;
+    }
+
+    public void setSearchTerms(String searchTerms) {
+        this.searchTerms = searchTerms;
+    }
 
     public int getRating() {
         return rating;
@@ -39,7 +48,12 @@ public class ViewAllController {
         this.uid = uid;
     }
     public List getImages() {
-        getAllImages();
+        if(searchTerms == null){
+            getAllImages();
+        }else
+        {
+            searchFor();
+        }
         return images;
     }
 
@@ -113,6 +127,35 @@ public class ViewAllController {
        handleRating(test1,uid);
    
    
+   }
+   
+   public void searchFor(){
+       //searchTerms is what we need to look for in the db.
+       
+        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+       String query = "select * from media where tags like '%"+searchTerms+"%'";
+      Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
+     images = new ArrayList<Media>();
+      try{
+      
+           Statement stmt = DBConn.createStatement();
+           ResultSet rs = stmt.executeQuery(query);
+           
+           while(rs.next()){
+              Media media = new Media(rs.getInt("uid"),rs.getString("url"),rs.getDouble("price"),
+                      rs.getString("author"),rs.getInt("rating"),rs.getString("tags"));
+              
+              images.add(media);
+           }
+  
+            rs.close();
+            DBConn.close();
+        } catch (Exception e) {
+             System.err.println("Got an exception!");
+             System.err.println(e.getMessage());
+        } 
+       
    }
     
     
