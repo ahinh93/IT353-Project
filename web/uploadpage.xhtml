@@ -11,12 +11,15 @@
             Good Luck!</h3>
         
         <h:form id="submitMediaForm"  enctype="multipart/form-data" >
-            <h:inputFile id="fileSelect" value="#{uploadController.media}"/><br/><br/>
+            <h:inputFile id="fileSelect" value="#{uploadController.media}"/>
+            <h:outputText value="  or Enter a YouTube URL "/>
+            <h:inputText id="youtubeUrl" value="#{uploadController.youtubeURL}"/>
+            <br/><br/>
             <h:outputLabel value="Price: "/>
             <h:inputText id="price" value="#{uploadController.price}"/><br/><br/>
             <h:outputLabel value="Tags"/>
             <h:inputTextarea id="tags" value="#{uploadController.tags}"/><br/><br/>
-            <h:commandButton value="Upload" action="#{uploadController.upload}">
+            <h:commandButton value="Upload" action="#{uploadController.uploadDes}">
                 <f:ajax execute="submitMediaForm" />
             </h:commandButton><br/>
         </h:form>

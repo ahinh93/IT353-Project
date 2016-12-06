@@ -5,18 +5,22 @@
  */
 package Controller;
 
+import com.google.gdata.client.youtube.YouTubeService;
 import dao.DBHelper;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.StringTokenizer;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
-import model.User;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
 
 
@@ -33,7 +37,15 @@ public class UploadController {
     
     private String price;
     private String tags;
+    private String youtubeURL;
 
+    public String getYoutubeURL() {
+        return youtubeURL;
+    }
+
+    public void setYoutubeURL(String youtubeURL) {
+        this.youtubeURL = youtubeURL;
+    }
     @ManagedProperty("#{loginController}")
     private LoginController lc;
 
@@ -89,9 +101,7 @@ public class UploadController {
         this.latestID = latestID;
     }
 
-    public UploadController(){
-        
-    }
+    
     
     public String upload(){
         
@@ -157,5 +167,43 @@ public class UploadController {
         this.media = media;
     }
      
+   public String uploadDes(){
+       if(media != null){
+           return upload();
+       }else{
+        return uploadYouTube();   
+       }
+   }
+   
+   public String uploadYouTube(){
+       String temp = "K_BTSE4fzIQ";
+       
+       String url = "https://www.googleapis.com/youtube/v3/"
+              +"videos?id="+temp+"&key=AIzaSyAuzP7wRcINqg_RqrowasqEBLiqt3lraKE&part=snippet,contentDetails,statistics,status";
+       
+       Client client = ClientBuilder.newClient();
+       WebTarget wt = client.target(url);
+       
+       String result = wt.request(MediaType.TEXT_PLAIN).get(String.class);
+      // System.out.println("index of: "+result.indexOf("duration"));
+       result = result.substring(4742);
+       result = result.substring(12,18);
+       
+       StringTokenizer st = new StringTokenizer(result,"PT M S");
+       int min = Integer.parseInt(st.nextToken());
+       
+       
+       
+       System.out.println("min: "+min);
+      
+       
+       if(min<2){
+           //write the url to the db
+       }else{
+           //kick out an error that the file is to long.
+       }
+       
+       return "errror";
+   }
    
 }
