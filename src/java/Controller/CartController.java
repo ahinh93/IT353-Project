@@ -59,31 +59,45 @@ public class CartController {
     public String checkout()
     {
         System.out.println("@@@@@@@@@@"+lc.getEmail()+" just hit the checkout button");
-        prepareReceipt();
+        //insert media id's and prices to arrays
+        ArrayList<Integer> media_ids = new ArrayList<Integer>();
+        ArrayList<Double> prices = new ArrayList<Double>();
         
+        
+        
+        
+        //email user receipt
+        prepareReceipt(media_ids,prices);
+        
+        //email author for royalty
+        //prepareRoyalty();
+        
+        //remove from database
+        return deleteFromCartTable();
+    }
+    public void prepareReceipt(ArrayList<Integer> ids, ArrayList<Double> prices)
+    {        
+        //create controller and call its email method
+        EmailController ec = new EmailController();
+        ec.emailReceipt(lc.getEmail(), ids, prices);
+    }
+    public String deleteFromCartTable()
+    {
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
         String myDB = "jdbc:derby://localhost:1527/it353finalproject";
         //DELETE FROM CART WHERE email = 'ahinh@ilstu.edu' and media_id = 202;
         String query = "DELETE FROM CART WHERE EMAIL = ?";
+        System.out.println("query: " + query);
         Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
 
         try{
       
             PreparedStatement preparedStmt = DBConn.prepareStatement(query);
-
             preparedStmt.setString (1, lc.getEmail());
             // execute the preparedstatement
             preparedStmt.execute();
             DBConn.close();
 
-
-            //send receipt to purchaser
-            EmailController ec = new EmailController();
-            int[] temp = new int[1];
-            temp[0] = 20684;
-            double[] price = new double[1];
-            price[0] = 842.24;
-            ec.emailReceipt(lc.getEmail(), temp, price);
 
             //send royalty to artist
 
@@ -93,39 +107,6 @@ public class CartController {
             return "failedpurchase.xhtml";
         }
         return "successfulcheckout.xhtml";
-    }
-    public boolean prepareReceipt()
-    {
-        System.out.println("@@@@@@@@@@"+lc.getEmail()+" just hit the checkout button");
-        prepareReceipt();
-        
-        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
-        //DELETE FROM CART WHERE email = 'ahinh@ilstu.edu' and media_id = 202;
-        String query = "DELETE FROM CART WHERE EMAIL = ?";
-        Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
-
-        try{
-      
-            PreparedStatement preparedStmt = DBConn.prepareStatement(query);
-
-            preparedStmt.setString (1, lc.getEmail());
-            // execute the preparedstatement
-            preparedStmt.execute();
-            DBConn.close();
-
-
-            //send receipt to purchaser
-            EmailController ec = new EmailController();
-
-            //send royalty to artist
-
-            } catch (Exception e) {
-            System.err.println("Got an exception!");
-            System.err.println(e.getMessage());
-            return false;
-        }
-        return true;
     }
     public void setLc(LoginController lc) {
         this.lc = lc;

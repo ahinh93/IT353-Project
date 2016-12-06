@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 import javax.mail.Message;
@@ -93,7 +94,7 @@ public class EmailController {
         }
         return "failure";
     }
-    public void emailReceipt(String email,int[] media_id, double[] price){
+    public void emailReceipt(String email,ArrayList<Integer> media_id, ArrayList<Double> price){
 
         // Recipient's email ID needs to be mentioned.
         String to = email;
@@ -133,14 +134,14 @@ public class EmailController {
             // Set Subject: header field
             message.setSubject("Purchase Receipt - Payment Confirmation");
             
-            String out = "Artwork purchased: <br><ul>";
+            String out = "Artwork purchased: <br>Media ID   Price<ol>";
             double totalCost = 0;
-            for(int i = 0; i < media_id.length; i++)
+            for(int i = 0; i < media_id.size(); i++)
             {
-                out+="<li>" +media_id[i]+" " + price[i] + "</ul>";
-                totalCost += price[i];
+                out+="<li>" +media_id.get(i)+" $" + price.get(i) + "</li>";
+                totalCost += price.get(i);
             }
-            out+="</ul>";
+            out+="</ol>";
             
             // Send the actual HTML message, as big as you like
             message.setContent("<h1>Thank you, "+email+" for supporting your local artists!.</h1>"
