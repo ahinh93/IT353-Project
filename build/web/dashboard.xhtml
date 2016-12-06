@@ -56,12 +56,18 @@
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel id="cart" header="Adding Items to Shopping Cart" style="margin-bottom:25px">
+                <p:panel id="cartImage" header="Adding Image Items to Shopping Cart" style="margin-bottom:25px">
                     <h:panelGrid columns="2" cellpadding="10">
-                        <h:link value="View All Media Submissions" outcome="viewallsubmissions" />
+                        <h:link value="View All Image Submissions" outcome="viewallsubmissions" />
                     </h:panelGrid>
                 </p:panel>
 
+                <p:panel id="cartVideo" header="Adding Video Items to Shopping Cart" style="margin-bottom:25px">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:link value="View All Video Submissions" outcome="viewvideo" />
+                    </h:panelGrid>
+                </p:panel>
+                
                 <p:panel id="checkout" header="Checkout" style="margin-bottom:25px">
                     <h:panelGrid columns="2" cellpadding="10">                      
                         <h:link value="Proceed to Checkout" outcome="viewcart"/>

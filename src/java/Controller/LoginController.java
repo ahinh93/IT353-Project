@@ -43,6 +43,9 @@ public class LoginController {
         this.profile = profile;
     }
 
+    public void killProfile(){
+        this.profile = null;
+    }
     /**
      * @return the email
      */
@@ -92,7 +95,7 @@ public class LoginController {
         
         if(getProfile() != null)
         {
-            return "loggedIn.xhtml";
+            return "dashboard.xhtml";
         }
         else
         {
