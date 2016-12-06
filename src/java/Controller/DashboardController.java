@@ -12,13 +12,18 @@ import java.util.ArrayList;
 @ManagedBean
 @SessionScoped
 public class DashboardController {
+    //Class Variables
     private User userBean; 
     private final DashDAO dao = new DashDAOImpl();      
+    
+    //Page Variables
     private WeeklyWinners[] pastWinners = new WeeklyWinners[5];
     private WeeklyWinners[] currentWinners = new WeeklyWinners[5];
     private boolean loggedIn = false;
-    private String searchToken;
-    private String response;    
+    private String inputToken;
+    private String response;
+    private String userName;
+    private String sponsers = "";
     
     public DashboardController() {
     }
@@ -33,17 +38,6 @@ public class DashboardController {
         return "index.xhtml";
     }
     
-    public String updateProfile() {
-        int status = dao.updateUser(userBean);
-        if(status == 200) {
-            setResponse("Profile was successfully updated");
-            return response;
-        } else {
-            setResponse("Error while updating profile");
-            return response;
-        }
-    }    
-    
     public void getWinners() {
         ArrayList<WeeklyWinners> list = dao.getAllWinners();
 
@@ -55,8 +49,14 @@ public class DashboardController {
 //                pastWinners, 0, pastWinners.length);
     }
     
+    public void addSponser() {
+        //create SponserDAOImpl
+        //In the DAO, SELECT the current value, concat that value with inputToken, 
+        //then UPDATE the value in the database
+    }
+    
     public String retrievePassword() {
-        return dao.getPassword(searchToken);
+        return dao.getPassword(inputToken);
     }    
     
     //--------------------------------------------------
@@ -85,12 +85,12 @@ public class DashboardController {
         this.currentWinners = currentWinners;
     }
 
-    public String getSearchTerm() {
-        return searchToken;
+    public String getInputToken() {
+        return inputToken;
     }
 
-    public void setSearchTerm(String searchTerm) {
-        this.searchToken = searchTerm;
+    public void setInputToken(String inputToken) {
+        this.inputToken = inputToken;
     }
 
     public String getResponse() {
@@ -107,5 +107,21 @@ public class DashboardController {
 
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
+    }
+
+    public String getUserName() {
+        return "Hello " + userName;
+    }
+    
+    public void setUserName(String token) {
+        this.userName = userBean.getFullName();
+    }
+
+    public String getSponsers() {
+        return sponsers;
+    }
+
+    public void setSponsers(String sponsers) {
+        this.sponsers = sponsers;
     }
 }

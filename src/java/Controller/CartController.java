@@ -9,17 +9,28 @@ import dao.CartDAO;
 import dao.CartDAOImpl;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import model.Cart;
 
 /**
  *
  * @author it353f608
- */
+ */ 
 @ManagedBean(name = "CartController")
 @SessionScoped
 public class CartController {
 
+    @ManagedProperty("#{loginController}")
+    private LoginController lc;
+
+    public LoginController getLc() {
+        return lc;
+    }
+
+    public void setLc(LoginController lc) {
+        this.lc = lc;
+    }
     private ArrayList<Cart> myCart;
     
     CartDAOImpl myDAO = new CartDAOImpl();
@@ -30,6 +41,13 @@ public class CartController {
         
         myCart = new ArrayList<Cart>();
     }
+    
+    public int addToCart(int mediaID)
+    {
+        System.out.println("mediaID: " + mediaID);
+        return mediaID;
+    }
+    
     
     public void checkout()
     {
@@ -42,7 +60,7 @@ public class CartController {
     public ArrayList<Cart> getMyCart() {
         CartDAOImpl daoImp = new CartDAOImpl();
         
-        this.myCart = daoImp.getCartByEmail("ahinh@ilstu.edu");
+        this.myCart = daoImp.getCartByEmail(lc.getEmail());
         return myCart;
     }
 
@@ -56,5 +74,5 @@ public class CartController {
     
     public void addToCart(){
         System.out.println("here");
-    }
+    }    
 }

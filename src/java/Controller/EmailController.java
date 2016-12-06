@@ -24,6 +24,16 @@ public class EmailController {
     public EmailController() {
     }
     
+    String recipient;
+    String subject;
+    String body;
+    
+    public EmailController(String recipient, String subject, String body)
+    {
+        this.recipient = recipient;
+        this.subject = subject;
+        this.body = body;
+    }
     
     public String emailWinner(String email,double prizeAmt){
 
