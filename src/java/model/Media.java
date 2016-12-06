@@ -17,6 +17,12 @@ public class Media {
     private int rating;
     private String tags;
 
+    public Media(int uid, double price)
+    {
+        this.uid = uid;
+        this.price = price;
+    }    
+    
     public String getTags() {
         return tags;
     }
