@@ -23,20 +23,15 @@ and open the template in the editor.
                 <p:column headerText="Media ID">
                     <h:outputText value="#{cart.mediaID}" />
                 </p:column>
-
+                
                 <p:column headerText="Price">
                     <h:outputText value="$#{cart.price}" />
                 </p:column>
-            </p:dataTable>
+            </p:dataTable>            
+            <input type="hidden" name="mediaIDkey" value="#{cart.mediaID}"/>
+            <h:commandButton value="Purchase Cart" action="#{CartController.checkout()}"/>
             
-            <p:growl id="growl" life="2000" />
- 
-            Enter the email of the user you want to checkout for<br/>
-            <p:inputText />
             
-            <p:commandLink id="ajax" update="growl" actionListener="#{buttonView.buttonAction}">
-                <h:outputText value="Submit" />
-            </p:commandLink>
         </h:form>
     </h:body>
 </html>

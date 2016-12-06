@@ -79,6 +79,11 @@ public class CartController {
 
             //send receipt to purchaser
             EmailController ec = new EmailController();
+            int[] temp = new int[1];
+            temp[0] = 20684;
+            double[] price = new double[1];
+            price[0] = 842.24;
+            ec.emailReceipt(lc.getEmail(), temp, price);
 
             //send royalty to artist
 
