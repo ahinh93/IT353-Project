@@ -8,7 +8,7 @@
         <title>View All</title>
     </h:head>
     <h:body>
-        Please feel free leave a rating.<br/><br/>
+        Please feel free to leave a rating.<br/><br/>
         <h:form id="searchForm">
         <h:inputText id="seachTags" value="#{viewAllController.searchTerms}"  />
         <h:button value="Search"  onclick="#{viewAllController.searchFor()}">
@@ -18,15 +18,20 @@
         <h:dataTable id="winnersTable" value="#{viewAllController.images}" var="aRow"
                      border="1" cellpadding="2" cellspacing="0">
             <h:column> 
-                    <h:graphicImage id="image" width="350" height="300" alt="uploaded image" url="/image?uid=#{aRow.uid}"/><br/>
+                    <h:graphicImage id="image" width="350" height="300" url="/image?uid=#{aRow.uid}"/><br/>
+                    
+                    url: <h:outputLabel value="#{aRow.youtubeURL}"/><br/>
+                    
                     Avg Rating: <h:outputLabel value="#{aRow.rating}"/>
                     <h:form>
                         <p:rating id="rating" value="#{aRow.rating}" cancel="false" >
                             <p:ajax event="rate" listener="#{viewAllController.onrate}"/>
                         </p:rating>
-                        <input type="hidden" name="uidKey" value="#{aRow.uid}"/>
+                        <input type="hidden" id="uidkey" name="uidKey" value="#{aRow.uid}"/>
                         <input type="hidden" name="oldRatingKey" value="#{aRow.rating}"/>
-                        <h:button value="Buy Me!" onclick="#{CartController.addToCart()}"/>
+                        
+                        <p:growl id="growl" showDetail="true"/><br/>
+                        <p:commandButton value="Add to Cart" action="#{CartController.addToCart()}" actionListener="#{CartController.showMessageGrowl}" update="growl"/>
                     </h:form>
                     
             </h:column>

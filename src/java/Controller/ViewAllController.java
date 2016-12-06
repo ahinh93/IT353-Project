@@ -19,7 +19,8 @@ import org.primefaces.event.RateEvent;
 @ManagedBean
 @SessionScoped
 public class ViewAllController {
-    private List images;
+    private List<Media> images;
+    private List<Media> videos;
     private int rating;
     private int uid;
     private String searchTerms;
@@ -54,6 +55,17 @@ public class ViewAllController {
         {
             searchFor();
         }
+        
+        ArrayList<Media> tempRemove = new ArrayList<Media>();
+        for(Media media : images){
+            if(media.getUrl() == null){
+                tempRemove.add(media);
+            }
+        }
+        
+        images.removeAll(tempRemove);
+        
+        
         return images;
     }
 
@@ -68,6 +80,7 @@ public class ViewAllController {
        String query = "select * from media";
       Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
      images = new ArrayList<Media>();
+     videos = new ArrayList<Media>();
       try{
       
            Statement stmt = DBConn.createStatement();
@@ -75,9 +88,10 @@ public class ViewAllController {
            
            while(rs.next()){
               Media media = new Media(rs.getInt("uid"),rs.getString("url"),rs.getDouble("price"),
-                      rs.getString("author"),rs.getInt("rating"),rs.getString("tags"));
+                      rs.getString("author"),rs.getInt("rating"),rs.getString("tags"),rs.getString("youtubelink"));
               
               images.add(media);
+              videos.add(media);
            }
   
             rs.close();
@@ -137,6 +151,7 @@ public class ViewAllController {
        String query = "select * from media where tags like '%"+searchTerms+"%'";
       Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
      images = new ArrayList<Media>();
+     videos = new ArrayList<Media>();
       try{
       
            Statement stmt = DBConn.createStatement();
@@ -144,9 +159,10 @@ public class ViewAllController {
            
            while(rs.next()){
               Media media = new Media(rs.getInt("uid"),rs.getString("url"),rs.getDouble("price"),
-                      rs.getString("author"),rs.getInt("rating"),rs.getString("tags"));
+                      rs.getString("author"),rs.getInt("rating"),rs.getString("tags"),rs.getString("youtubelink"));
               
               images.add(media);
+              videos.add(media);
            }
   
             rs.close();
@@ -157,6 +173,32 @@ public class ViewAllController {
         } 
        
    }
+
+  
+    public List<Media> getVideos() {
+        if(searchTerms == null){
+            getAllImages();
+        }else
+        {
+            searchFor();
+        }
+        
+        ArrayList<Media> tempRemove = new ArrayList<Media>();
+        for(Media media : videos){
+            if(media.getUrl() != null){
+                tempRemove.add(media);
+            }
+        }
+        
+        videos.removeAll(tempRemove);
+        
+        return videos;
+    }
+
+   
+    public void setVideos(List<Media> videos) {
+        this.videos = videos;
+    }
     
     
 }

@@ -5,6 +5,7 @@ import javax.faces.bean.SessionScoped;
 import model.*;
 import dao.*;
 import java.util.ArrayList;
+import javax.faces.bean.ManagedProperty;
 
 /**
  * @author Randall DeVitto
@@ -22,8 +23,18 @@ public class DashboardController {
     private boolean loggedIn = false;
     private String inputToken;
     private String response;
-    private String sponser;
-    private String username;
+    private String userName;
+    private String sponsers = "";
+    @ManagedProperty("#{loginController}")
+    private LoginController lc;
+
+    public LoginController getLc() {
+        return lc;
+    }
+
+    public void setLc(LoginController lc) {
+        this.lc = lc;
+    }
     
     public DashboardController() {
     }
@@ -34,6 +45,7 @@ public class DashboardController {
     }
     
     public String logout() {
+        lc.killProfile();
         this.loggedIn = false;
         return "index.xhtml";
     }
@@ -123,8 +135,13 @@ public class DashboardController {
         this.loggedIn = loggedIn;
     }
 
+<<<<<<< HEAD
     public String getUsername() {
         return "Hello Test Name";
+=======
+    public String getUserName() {
+        return "Hello " + lc.getEmail();
+>>>>>>> d1a89442fc82cd3fde3df97ffa68bac49af49f83
     }
     
     public void setUsername(String username) {
@@ -138,4 +155,6 @@ public class DashboardController {
     public void setSponser(String sponser) {
         this.sponser = sponser;
     }
+    
+   
 }

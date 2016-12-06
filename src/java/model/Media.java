@@ -16,7 +16,22 @@ public class Media {
     private String author;
     private int rating;
     private String tags;
+    private String youtubeURL;
 
+    public String getYoutubeURL() {
+        return youtubeURL;
+    }
+
+    public void setYoutubeURL(String youtubeURL) {
+        this.youtubeURL = youtubeURL;
+    }
+
+    public Media(int uid, double price)
+    {
+        this.uid = uid;
+        this.price = price;
+    }    
+    
     public String getTags() {
         return tags;
     }
@@ -37,13 +52,14 @@ public class Media {
     }
     
     
-    public Media(int uid, String url, double price, String author,int rating,String tags){
+    public Media(int uid, String url, double price, String author,int rating,String tags,String youtubeURL){
         this.uid = uid;
         this.url = url;
         this.price = price;
         this.author = author;
         this.rating = rating;
         this.tags = tags;
+        this.youtubeURL = youtubeURL;
     }
     
     public int getUid() {
