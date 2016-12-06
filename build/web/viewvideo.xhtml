@@ -29,7 +29,9 @@
                         </p:rating>
                         <input type="hidden" name="uidKey" value="#{aRow.uid}"/>
                         <input type="hidden" name="oldRatingKey" value="#{aRow.rating}"/>
-                        <h:button value="Buy Me!" onclick="#{CartController.addToCart()}"/>
+                        
+                        <p:growl id="growl" showDetail="true"/><br/>
+                        <p:commandButton value="Add to Cart" action="#{CartController.addToCart()}" actionListener="#{CartController.showVideoGrowl}" update="growl"/>
                     </h:form>
                     
             </h:column>

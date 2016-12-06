@@ -16,13 +16,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import model.Cart;
 import model.Media;
-
 /**
  *
  * @author it353f608
@@ -35,6 +35,8 @@ public class CartController {
     private LoginController lc;
     private ArrayList<Cart> myCart;    
     CartDAOImpl myDAO = new CartDAOImpl();
+    private String message;
+    
     
     /**
      * Creates a new instance of ShoppingController
@@ -48,11 +50,27 @@ public class CartController {
         return lc;
     }
     
-    public int addToCart()
+    public void addToCart()
     {
-        String mediaID = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("mediaIDkey");
-        System.out.println("Adding media: " + mediaID +" to the cart table");
-        return 1;
+        String mediaID = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uidKey");
+        //System.out.println("Adding media: " + mediaID +" to the cart table");
+        
+        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String query = "insert into cart (email,media_id) values (?,?)";
+        Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
+        
+        try{
+            PreparedStatement preparedStmt = DBConn.prepareStatement(query);
+            preparedStmt.setString (1, lc.getEmail());
+            preparedStmt.setInt(2,Integer.parseInt(mediaID));
+            // execute the preparedstatement
+            preparedStmt.execute();
+            DBConn.close();            
+        }catch(Exception e){
+            System.err.println("Error: Problem with SQL.");
+            e.printStackTrace();
+        }
     }    
     /**
      * TODO:
@@ -205,8 +223,7 @@ public class CartController {
         System.out.println("query: " + query);
         Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
 
-        try{
-      
+        try{      
             PreparedStatement preparedStmt = DBConn.prepareStatement(query);
             preparedStmt.setString (1, lc.getEmail());
             // execute the preparedstatement
@@ -238,5 +255,29 @@ public class CartController {
     public void setMyCart(ArrayList<Cart> myCart) {
         this.myCart = myCart;
     }     
-    
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        message = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uidKey");
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    public void showMessageGrowl() {
+        FacesContext context = FacesContext.getCurrentInstance();
+         
+        context.addMessage(null, new FacesMessage("Success!!",  "You've added this image to your cart!"));
+    }
+    public void showVideoGrowl() {
+        FacesContext context = FacesContext.getCurrentInstance();
+         
+        context.addMessage(null, new FacesMessage("Success!!",  "You've added this video to your cart!"));
+    }
 }
