@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/I:/NetBeansApps/IT353-Project/web/viewallsubmissions.xhtml</file>
+            <file>file:/I:/NetBeansApps/IT353Project/web/signUp.xhtml</file>
+            <file>file:/I:/NetBeansApps/IT353Project/web/update.xhtml</file>
+            <file>file:/I:/NetBeansApps/IT353Project/src/java/Controller/UpdateUserController.java</file>
+            <file>file:/I:/NetBeansApps/IT353Project/web/logIn.xhtml</file>
+            <file>file:/I:/NetBeansApps/IT353Project/src/java/Controller/LoginController.java</file>
+            <file>file:/I:/NetBeansApps/IT353Project/src/java/dao/UserDAOImpl.java</file>
+            <file>file:/I:/NetBeansApps/IT353Project/web/loggedIn.xhtml</file>
         </group>
     </open-files>
 </project-private>

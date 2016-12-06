@@ -33,7 +33,7 @@ public class LoginController {
      * @return the profile
      */
     public User getUser() {
-        return profile;
+        return getProfile();
     }
 
     /**
@@ -88,9 +88,9 @@ public class LoginController {
     public String findUserEmail()
     {
         UserDAO dao = new UserDAOImpl();       
-        profile = dao.findUserEmail(email, password);
+        setProfile(dao.findUserEmail(email, password));
         
-        if(profile != null)
+        if(getProfile() != null)
         {
             return "loggedIn.xhtml";
         }
@@ -99,6 +99,13 @@ public class LoginController {
             response = "FAILED LOG IN.";          
             return "logIn.xhtml";
         }
+    }
+
+    /**
+     * @return the profile
+     */
+    public User getProfile() {
+        return profile;
     }
     
 }

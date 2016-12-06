@@ -78,8 +78,7 @@ public class UserDAOImpl implements UserDAO {
                     + "password = '" + bean.getPassword() + "', "
                     + "fullname = '" + bean.getFullName() + "', "
                     + "phonenumber = '" + bean.getPhoneNumber()+ "', "
-                    + "subscribed = '" + bean.isSubscribed()+ "' "
-                    + "userlevel = '" + bean.getUserlevel()+ "' "
+                    + "subscribed = '" + bean.isSubscribed()+ "' "                   
                     + "WHERE email = '" + bean.getEmail()+ "'";
             
             rowCount = stmt.executeUpdate(insertString);
