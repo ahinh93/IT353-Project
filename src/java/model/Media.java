@@ -26,6 +26,12 @@ public class Media {
         this.youtubeURL = youtubeURL;
     }
 
+    public Media(int uid, double price)
+    {
+        this.uid = uid;
+        this.price = price;
+    }    
+    
     public String getTags() {
         return tags;
     }

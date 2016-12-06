@@ -25,7 +25,7 @@ and open the template in the editor.
                 </p:column>
                 
                 <p:column headerText="Price">
-                    <h:outputText value="$#{cart.price}" />
+                    <h:outputText value="#{cart.formatted_price}" />
                 </p:column>
             </p:dataTable>            
             <input type="hidden" name="mediaIDkey" value="#{cart.mediaID}"/>
