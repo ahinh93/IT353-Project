@@ -15,12 +15,18 @@
             <h:outputText value="  or Enter a YouTube URL "/>
             <h:inputText id="youtubeUrl" value="#{uploadController.youtubeURL}"/>
             <br/><br/>
+            
+            
             <h:outputLabel value="Price: "/>
-            <h:inputText id="price" value="#{uploadController.price}"/><br/><br/>
+            <h:inputText id="price" value="#{uploadController.price}" required="true" requiredMessage="Price is required."/>
+            <h:message id="priceMessage" for="price" errorStyle="color:red"/>
+            <br/><br/>
+            
+            
             <h:outputLabel value="Tags"/>
             <h:inputTextarea id="tags" value="#{uploadController.tags}"/><br/><br/>
-            <h:commandButton value="Upload" action="#{uploadController.uploadDes}">
-                <f:ajax execute="submitMediaForm" />
+            <h:commandButton value="Upload"  action="#{uploadController.uploadDes}">
+                <f:ajax execute="submitMediaForm" render="priceMessage" />
             </h:commandButton><br/>
         </h:form>
     </h:body>

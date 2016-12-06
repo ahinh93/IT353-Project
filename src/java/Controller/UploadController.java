@@ -168,11 +168,19 @@ public class UploadController {
     }
      
    public String uploadDes(){
+       
+       
+       if(media == null && youtubeURL.equalsIgnoreCase("") || media != null && !youtubeURL.equals("")){
+           return "noinputuploaderror.xhtml";
+       }
        if(media != null){
            return upload();
-       }else{
+       }
+       if(youtubeURL != null){
         return uploadYouTube();   
        }
+       
+       return "noinputuploaderror.xhtml";
    }
    
    public String uploadYouTube(){
@@ -183,10 +191,15 @@ public class UploadController {
        WebTarget wt = client.target(url);
        
        String result = wt.request(MediaType.TEXT_PLAIN).get(String.class);
+       try{
        result = result.substring(result.indexOf("duration"));
        result = result.substring(0, result.indexOf(','));
        result = result.substring(12,result.length()-1);
-       
+       }catch(StringIndexOutOfBoundsException e){
+           System.err.println(e.getMessage());
+           System.err.println(e.getStackTrace());
+           return "notvalidyoutube.xhtml";
+       }
        System.out.println("result trim: "+result);
        int min;
        if(result.contains("M")){

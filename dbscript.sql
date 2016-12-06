@@ -17,11 +17,12 @@ verified 	BOOLEAN default false
 CREATE TABLE media
 (
 uid int not null generated always as identity constraint media_pk primary key,
-url blob not null,
+url blob,
 price double not null,
 author VARCHAR(50) references users(email),
-rating int not null,
-tags varchar(200)
+rating int not null default 0,
+tags varchar(200),
+youtubelink varchar(100)
 );
 
 CREATE TABLE weeklywinners

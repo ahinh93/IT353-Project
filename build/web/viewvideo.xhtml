@@ -2,25 +2,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>View All</title>
+        <title>Video Submissions</title>
     </h:head>
     <h:body>
-        Please feel free leave a rating.<br/><br/>
+        
+         Please feel free leave a rating.<br/><br/>
         <h:form id="searchForm">
         <h:inputText id="seachTags" value="#{viewAllController.searchTerms}"  />
         <h:button value="Search"  onclick="#{viewAllController.searchFor()}">
             <f:ajax event="click" render="winnersTable"/>
         </h:button><br/><br/>
         </h:form>
-        <h:dataTable id="winnersTable" value="#{viewAllController.images}" var="aRow"
+        <h:dataTable id="winnersTable" value="#{viewAllController.videos}" var="aRow"
                      border="1" cellpadding="2" cellspacing="0">
             <h:column> 
-                    <h:graphicImage id="image" width="350" height="300" url="/image?uid=#{aRow.uid}"/><br/>
-                    
-                    url: <h:outputLabel value="#{aRow.youtubeURL}"/><br/>
+                   
+                <p:media id="youtubeVide" value="http://www.youtube.com/v/#{aRow.youtubeURL}" width="350" height="300" player="flash" />
                     
                     Avg Rating: <h:outputLabel value="#{aRow.rating}"/>
                     <h:form>
@@ -34,6 +34,11 @@
                     
             </h:column>
         </h:dataTable>     
+     
+        
+        
+        
+        
         
     </h:body>
 </html>

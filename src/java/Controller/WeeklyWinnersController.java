@@ -85,10 +85,10 @@ public class WeeklyWinnersController {
         List<WeeklyWinners> list = getListsAvailDates();
         String winnerEmail = "";
         Date toUpdateDate = null;
-        System.out.println("size: "+list.size());
+//        System.out.println("size: "+list.size());
         for(int i=0;i<list.size();i++){
-            System.out.println(list.get(i).getDate().toString()+" == "+payoutTo);
-            System.out.println(list.get(i).getDate().toString().equals(payoutTo));
+//            System.out.println(list.get(i).getDate().toString()+" == "+payoutTo);
+//            System.out.println(list.get(i).getDate().toString().equals(payoutTo));
            if(list.get(i).getDate().toString().equals(payoutTo)){
                toUpdateDate = list.get(i).getDate();
                winnerEmail = list.get(i).getAuthor();
@@ -102,7 +102,7 @@ public class WeeklyWinnersController {
         EmailController ec = new EmailController();
         
         double min = 10.00;
-        double max = 9934.99;
+        double max = 1000.99;
         Random r = new Random();
         double pmt = min + (max - min) * r.nextDouble();
         
