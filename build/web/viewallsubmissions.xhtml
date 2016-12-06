@@ -18,7 +18,10 @@
         <h:dataTable id="winnersTable" value="#{viewAllController.images}" var="aRow"
                      border="1" cellpadding="2" cellspacing="0">
             <h:column> 
-                    <h:graphicImage id="image" width="350" height="300" alt="uploaded image" url="/image?uid=#{aRow.uid}"/><br/>
+                    <h:graphicImage id="image" width="350" height="300" url="/image?uid=#{aRow.uid}"/><br/>
+                    
+                    url: <h:outputLabel value="#{aRow.youtubeURL}"/><br/>
+                    
                     Avg Rating: <h:outputLabel value="#{aRow.rating}"/>
                     <h:form>
                         <p:rating id="rating" value="#{aRow.rating}" cancel="false" >
