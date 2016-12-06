@@ -8,6 +8,7 @@ package Controller;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import model.User;
 
 /**
@@ -24,7 +25,22 @@ public class UpdateUserController {
     private boolean subscribed;
     private String updateStatus = "";
     private User bean = new User();
+    @ManagedProperty("#{loginController}")
+    private LoginController lc;
 
+    public UpdateUserController()
+    {
+        
+    }
+    public UpdateUserController(String email, String password, String fullname, String userlevel, String phoneNo, boolean subscribed)
+    {
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.userlevel = userlevel;
+        this.phoneNo = phoneNo;
+        this.subscribed = subscribed;
+    }
     /**
      * @return the email
      */
@@ -82,7 +98,9 @@ public class UpdateUserController {
     }
     
     public void updateUser() {
-        UserDAO dao = new UserDAOImpl();    // Creating a new object each time.
+        UserDAO dao = new UserDAOImpl();    // Creating a new object each time.    
+        //bean = lc.getProfile();
+        bean = new User(lc.getEmail(), password, fullname, phoneNo, subscribed, userlevel); 
         int status = dao.updateUser(bean); // Doing anything with the object after this?
         if (status != 0) {
             setUpdateStatus("Profile updated successfully");
@@ -131,6 +149,20 @@ public class UpdateUserController {
      */
     public void setUserlevel(String userlevel) {
         this.userlevel = userlevel;
+    }
+
+    /**
+     * @return the lc
+     */
+    public LoginController getLc() {
+        return lc;
+    }
+
+    /**
+     * @param lc the lc to set
+     */
+    public void setLc(LoginController lc) {
+        this.lc = lc;
     }
     
 }
