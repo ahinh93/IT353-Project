@@ -22,8 +22,8 @@ public class DashboardController {
     private boolean loggedIn = false;
     private String inputToken;
     private String response;
-    private String userName;
-    private String sponsers = "";
+    private String sponser;
+    private String username;
     
     public DashboardController() {
     }
@@ -50,12 +50,26 @@ public class DashboardController {
     }
     
     public void addSponser() {
-        //create SponserDAOImpl
+        SponserDAO dao = new SponserDAOImpl();
+        int status = dao.updateSponsers(sponser);
+        
+        if(status == 200)
+            response = "Sponsers Updated";
+        else
+            response = "Error: Sponser Update Failed";
+        
         //In the DAO, SELECT the current value, concat that value with inputToken, 
         //then UPDATE the value in the database
     }
     
+    private String retrieveSponsersList() {
+        SponserDAO dao = new SponserDAOImpl();
+        setSponser(dao.getSponsers());
+        return sponser;
+    }
+    
     public String retrievePassword() {
+        DashDAO dao = new DashDAOImpl();
         return dao.getPassword(inputToken);
     }    
     
@@ -109,19 +123,19 @@ public class DashboardController {
         this.loggedIn = loggedIn;
     }
 
-    public String getUserName() {
-        return "Hello " + userName;
+    public String getUsername() {
+        return "Hello Test Name";
     }
     
-    public void setUserName(String token) {
-        this.userName = userBean.getFullName();
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public String getSponser() {
+        return retrieveSponsersList();
     }
 
-    public String getSponsers() {
-        return sponsers;
-    }
-
-    public void setSponsers(String sponsers) {
-        this.sponsers = sponsers;
+    public void setSponser(String sponser) {
+        this.sponser = sponser;
     }
 }

@@ -8,6 +8,8 @@
         <title>Facelet Title</title>
         <style>
             #buttons {
+                position: absolute;
+                left: 0;
                 height: 775px;
                 width: 1375px;
                 padding-top: 35px;
@@ -20,6 +22,16 @@
                 width: 99.1%;
                 top: 0;
                 position: absolute;
+            }
+            
+            #weeklyWinners {
+                position: absolute;
+                right: 0;
+                width: 220px;
+                height: 675px;
+                padding-right: 15px;
+                padding-top: 25px;
+                text-align: center;
             }
             
             #sponsers {
@@ -41,7 +53,7 @@
     <h:body>
         <div align="right" id="loginStatus">
             <h:form>                
-                <h:outputText value="#{dashboardController.userName}"/> &nbsp;
+                <h:outputText value="#{dashboardController.username}"/> &nbsp;
                 <h:commandLink value="Logout" action="#{dashboardController.logout()}" />
             </h:form>
         </div><br/>
@@ -85,9 +97,14 @@
                 </p:panel> 
             </h:form>            
         </div>
+        
+        <div id="weeklyWinners">
+            <h:outputText value="Weekly Winners: "/>
+        </div>
+        
         <div id="sponsers">
             <h:outputText value="Our Sponsers"/><br/>
-            <h:outputText value="#{dashboardController.sponsers}"/><br/>
+            <h:outputText value="#{dashboardController.sponser}"/><br/>
         </div>
     </h:body>
 </html>
