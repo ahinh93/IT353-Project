@@ -176,34 +176,79 @@ public class UploadController {
    }
    
    public String uploadYouTube(){
-       String temp = "K_BTSE4fzIQ";
+//       String temp = "hS5CfP8n_js";
        
-       String url = "https://www.googleapis.com/youtube/v3/"
-              +"videos?id="+temp+"&key=AIzaSyAuzP7wRcINqg_RqrowasqEBLiqt3lraKE&part=snippet,contentDetails,statistics,status";
-       
+       String url = "https://www.googleapis.com/youtube/v3/videos?id="+youtubeURL+"&key=AIzaSyAuzP7wRcINqg_RqrowasqEBLiqt3lraKE&part=snippet,contentDetails,statistics,status";
        Client client = ClientBuilder.newClient();
        WebTarget wt = client.target(url);
        
        String result = wt.request(MediaType.TEXT_PLAIN).get(String.class);
-      // System.out.println("index of: "+result.indexOf("duration"));
-       result = result.substring(4742);
-       result = result.substring(12,18);
+       result = result.substring(result.indexOf("duration"));
+       result = result.substring(0, result.indexOf(','));
+       result = result.substring(12,result.length()-1);
        
-       StringTokenizer st = new StringTokenizer(result,"PT M S");
-       int min = Integer.parseInt(st.nextToken());
-       
+       System.out.println("result trim: "+result);
+       int min;
+       if(result.contains("M")){
+        StringTokenizer st = new StringTokenizer(result,"PT M S");
+        min = Integer.parseInt(st.nextToken());
+       }else{
+           StringTokenizer st = new StringTokenizer(result,"PT S");
+           min = 0;
+       }
        
        
        System.out.println("min: "+min);
-      
-       
        if(min<2){
            //write the url to the db
+           return youtubeHelper();
+           
+           
+           
+           
        }else{
            //kick out an error that the file is to long.
        }
        
        return "errror";
    }
+ 
+   
+   public String youtubeHelper(){
+       
+        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+       String query = "insert into media (youtubelink, price, author, tags)"
+        + " values (?, ?, ?, ?)";
+      Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
+      
+      try{
+      
+            PreparedStatement preparedStmt = DBConn.prepareStatement(query);
+           
+            preparedStmt.setDouble (2, Double.parseDouble(price));
+            preparedStmt.setString (3, lc.getEmail());
+            preparedStmt.setString(4, tags);
+            preparedStmt.setString(1, youtubeURL);
+            
+            
+            
+            // execute the preparedstatement
+            preparedStmt.execute();
+       
+            
+            DBConn.close();
+        } catch (Exception e) {
+      System.err.println("Got an exception!");
+      System.err.println(e.getMessage());
+      return "faileduploadyoutube.xhtml";
+    }
+      return "successfuluploadyoutube.xhtml";
+       
+       
+       
+   }
+   
+   
    
 }
