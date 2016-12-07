@@ -2,6 +2,8 @@ package Controller;
 
 import dao.DBHelper;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -200,5 +202,34 @@ public class ViewAllController {
         this.videos = videos;
     }
     
+    public void makeWinner(){
+       DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+       
+       String mediaID = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uidKey");
+       
+       
+       String query = "insert into weeklywinners values ('2016-12-07',?,false)";
+      Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
+ 
     
-}
+    try{
+        PreparedStatement preparedStmt = DBConn.prepareStatement(query);
+            preparedStmt.setInt(1,Integer.parseInt(mediaID));
+            // execute the preparedstatement
+            preparedStmt.execute();
+            DBConn.close();            
+        }catch(Exception e){
+            System.err.println("Error: Problem with SQL.");
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    
+    
+    }
+    
+    
+
