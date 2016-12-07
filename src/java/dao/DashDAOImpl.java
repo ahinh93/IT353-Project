@@ -56,4 +56,70 @@ public class DashDAOImpl implements DashDAO {
         }
         return winners;
     }
+    
+    @Override
+    public int updateSponsers(String sponser) {
+        Connection DBConn = null;
+        int status = 0;
+        
+        try {
+            DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+            DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
+
+            String sponsersList = getSponsers();   
+            sponsersList = sponsersList.concat(" / " + sponser);
+            String query = "UPDATE ADMIN1.SPONSERS SET URL_LIST = '" + sponsersList + "'";
+            
+            Statement stmt = DBConn.createStatement();
+            status = stmt.executeUpdate(query);            
+            
+            stmt.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: Problems with SQL select");
+            e.printStackTrace();
+        }
+
+        try {
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        
+        return status;
+    }
+
+    @Override
+    public String getSponsers() {
+        Connection DBConn = null;
+        String sponserList = "a";
+        
+        try {
+            DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+            DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
+
+            String query = "SELECT URL_LIST from ADMIN1.SPONSERS";
+            
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);  
+            
+            while(rs.next() != false)
+                sponserList = rs.getString("url_list");
+            
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: Problems with SQL select");
+            e.printStackTrace();
+        }
+
+        try {
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return sponserList;
+    }
 }

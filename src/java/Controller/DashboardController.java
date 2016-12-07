@@ -46,7 +46,6 @@ public class DashboardController {
     }
     
     public void addSponser() {
-        SponserDAO dao = new SponserDAOImpl();
         int status = dao.updateSponsers(inputToken);
         
         if(status == 1)
@@ -55,8 +54,7 @@ public class DashboardController {
             response = "Error: Sponser Update Failed";
     }
     
-    private String retrieveSponsersList() {
-        SponserDAO dao = new SponserDAOImpl();
+    private String retrieveSponsersList() {        
         setSponser(dao.getSponsers());
         return sponser;
     }  

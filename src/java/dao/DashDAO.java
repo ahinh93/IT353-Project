@@ -9,4 +9,6 @@ import model.*;
  */
 public interface DashDAO {
     public ArrayList<WeeklyWinners> getAllWinners();
+    public int updateSponsers(String sponser);
+    public String getSponsers();
 }
