@@ -14,40 +14,25 @@ import javax.faces.bean.ManagedProperty;
 @SessionScoped
 public class DashboardController {
     //Class Variables
-    private User userBean; 
-    private final DashDAO dao = new DashDAOImpl();      
+    private final DashDAO dao = new DashDAOImpl();     
+    @ManagedProperty("#{loginController}")
+    private LoginController lc;
     
     //Page Variables
     private WeeklyWinners[] pastWinners = new WeeklyWinners[5];
     private WeeklyWinners[] currentWinners = new WeeklyWinners[5];
-    private boolean loggedIn = false;
     private String inputToken;
     private String response;
     private String userName;
-    private String sponsers = "";
-    @ManagedProperty("#{loginController}")
-    private LoginController lc;
+    private String sponser = "";
 
-    public LoginController getLc() {
-        return lc;
-    }
-
-    public void setLc(LoginController lc) {
-        this.lc = lc;
-    }
     
     public DashboardController() {
     }
 
-    public String login() {
-        this.loggedIn = true;
-        return "dashboard.xhtml";
-    }
-    
     public String logout() {
         lc.killProfile();
-        this.loggedIn = false;
-        return "index.xhtml";
+        return "logIn.xhtml";
     }
     
     public void getWinners() {
@@ -63,9 +48,9 @@ public class DashboardController {
     
     public void addSponser() {
         SponserDAO dao = new SponserDAOImpl();
-        int status = dao.updateSponsers(sponser);
+        int status = dao.updateSponsers(inputToken);
         
-        if(status == 200)
+        if(status == 1)
             response = "Sponsers Updated";
         else
             response = "Error: Sponser Update Failed";
@@ -81,19 +66,10 @@ public class DashboardController {
     }
     
     public String retrievePassword() {
-        DashDAO dao = new DashDAOImpl();
         return dao.getPassword(inputToken);
     }    
     
     //--------------------------------------------------
-
-    public User getUserBean() {
-        return userBean;
-    }
- 
-    public void setUserBean(User userBean) {
-        this.userBean = userBean;
-    }    
 
     public WeeklyWinners[] getPastWinners() {
         return pastWinners;
@@ -127,25 +103,12 @@ public class DashboardController {
         this.response = response;
     }
 
-    public boolean getLoggedIn() {
-        return loggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
-    }
-
-<<<<<<< HEAD
-    public String getUsername() {
-        return "Hello Test Name";
-=======
     public String getUserName() {
         return "Hello " + lc.getEmail();
->>>>>>> d1a89442fc82cd3fde3df97ffa68bac49af49f83
     }
     
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
     
     public String getSponser() {
@@ -154,7 +117,13 @@ public class DashboardController {
 
     public void setSponser(String sponser) {
         this.sponser = sponser;
-    }
+    }  
     
-   
+    public LoginController getLc() {
+        return lc;
+    }
+
+    public void setLc(LoginController lc) {
+        this.lc = lc;
+    }
 }

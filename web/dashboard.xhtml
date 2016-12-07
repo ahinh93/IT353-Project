@@ -44,16 +44,12 @@
                 background: #cccccc;
             }
         </style>
-        
-        <script>
-            
-        </script>
     </h:head>
     
     <h:body>
         <div align="right" id="loginStatus">
             <h:form>                
-                <h:outputText value="#{dashboardController.username}"/> &nbsp;
+                <h:outputText value="#{dashboardController.userName}"/> &nbsp;
                 <h:commandLink value="Logout" action="#{dashboardController.logout()}" />
             </h:form>
         </div><br/>
@@ -97,15 +93,43 @@
                         <h:outputText value="Enter a URL to a sponser you'd like to add:" />
                         <h:form>
                             <h:inputText value="#{dashboardController.inputToken}" />
-                            <h:commandButton value="Add Sponser" action="#{dashboardController.addSponser()}" />
-                        </h:form>  
+                            <h:commandButton value="Add Sponser" action="#{dashboardController.addSponser()}" /> &nbsp;
+                            <h:outputText value="#{dashboardController.response}"/>
+                        </h:form>
                     </h:panelGrid>
                 </p:panel> 
             </h:form>            
         </div>
         
         <div id="weeklyWinners">
-            <h:outputText value="Weekly Winners: "/>
+            Weekly Winners:            
+            <h:dataTable id="currentWinners">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Current Winners"/>
+                    </f:facet>
+                    <h:outputText value="Winner 2"/>
+                    <h:outputText value="Winner 3"/>
+                    <h:outputText value="Winner 4"/>
+                    <h:outputText value="Winner 5"/>
+                </h:column>
+            </h:dataTable>
+            
+            <br/><br/><br/><br/><br/><br/>
+            
+            <h:dataTable id="pastWinners">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Past Winners" />
+                    </f:facet>
+                    <h:outputText value="Winner 1"/>
+                    <h:outputText value="Winner 2"/>
+                    <h:outputText value="Winner 3"/>
+                    <h:outputText value="Winner 4"/>
+                    <h:outputText value="Winner 5"/>
+                </h:column>
+            </h:dataTable>
+            End
         </div>
         
         <div id="sponsers">

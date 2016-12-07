@@ -12,7 +12,34 @@ public class SponserDAOImpl implements SponserDAO {
 
     @Override
     public int updateSponsers(String sponser) {
-        return 0;
+        Connection DBConn = null;
+        int status = 0;
+        
+        try {
+            DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+            DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
+
+            String sponsersList = getSponsers();   
+            sponsersList = sponsersList.concat(" " + sponser);
+            String query = "UPDATE ADMIN1.SPONSERS SET URL_LIST = '" + sponsersList + "'";
+            
+            Statement stmt = DBConn.createStatement();
+            status = stmt.executeUpdate(query);            
+            
+            stmt.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: Problems with SQL select");
+            e.printStackTrace();
+        }
+
+        try {
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        
+        return status;
     }
 
     @Override

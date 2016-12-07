@@ -39,6 +39,10 @@ email VARCHAR(50) references users(email),
 media_id int references media(uid)
 );
 
+CREATE TABLE sponsers (
+	url_list VARCHAR(200)
+);
+
 INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
 VALUES ('ahinh@ilstu.edu','secret','Andrew Hinh',true,'admin','8476685186');
 
@@ -65,3 +69,6 @@ VALUES ('rdevitt@ilstu.edu','password','Randy Devitt',true,'admin','3098881234')
 
 INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber) 
 VALUES ('jgarc@ilstu.edu','password','Julian Garcia',true,'admin','3091234657');
+
+INSERT INTO SPONSERS(url_list)
+VALUES ('www.amazon.com www.normal.org');
