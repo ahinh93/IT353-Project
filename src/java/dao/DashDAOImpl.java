@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,46 +17,12 @@ public class DashDAOImpl implements DashDAO {
     private final String connStr = "jdbc:derby://localhost:1527/it353finalproject";
     
     public DashDAOImpl() { 
-    }
-    
-    @Override
-    public String getPassword(String email) {
-        Connection DBConn = null;
-        String result = "";
-        
-        try {
-            DBHelper.loadDriver(driverName);
-            DBConn = DBHelper.connect2DB(connStr, "admin1", "password");
-            String query = "SELECT password FROM it353finalproject.users WHERE email = ?";
-            PreparedStatement stmt = DBConn.prepareStatement(query);
-            stmt.setString(1, email);
-
-            ResultSet rs = stmt.executeQuery();
-            result = rs.getString("password");
-            
-            rs.close();
-            stmt.close();
-        } catch (Exception e) {
-            System.err.println("ERROR: Problems with SQL select");
-            e.printStackTrace();
-        }
-        try {
-            DBConn.close();
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-        return result;
     }   
-
-    @Override
-    public int updateUser(User userBean) {
-        return 0;
-    }
     
     @Override
     public ArrayList<WeeklyWinners> getAllWinners() {
         String query = "SELECT * FROM weeklywinners ORDER BY date DESC";
-        ArrayList<WeeklyWinners> winners = new ArrayList<WeeklyWinners>();
+        ArrayList<WeeklyWinners> winners = new ArrayList();
         Connection DBConn = null;
         WeeklyWinners winner = null;
         
@@ -93,7 +58,68 @@ public class DashDAOImpl implements DashDAO {
     }
     
     @Override
-    public WeeklyWinners getWinner(String UID) {
-        return null;
+    public int updateSponsers(String sponser) {
+        Connection DBConn = null;
+        int status = 0;
+        
+        try {
+            DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+            DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
+
+            String sponsersList = getSponsers();   
+            sponsersList = sponsersList.concat(" / " + sponser);
+            String query = "UPDATE ADMIN1.SPONSERS SET URL_LIST = '" + sponsersList + "'";
+            
+            Statement stmt = DBConn.createStatement();
+            status = stmt.executeUpdate(query);            
+            
+            stmt.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: Problems with SQL select");
+            e.printStackTrace();
+        }
+
+        try {
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        
+        return status;
+    }
+
+    @Override
+    public String getSponsers() {
+        Connection DBConn = null;
+        String sponserList = "a";
+        
+        try {
+            DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+            DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
+
+            String query = "SELECT URL_LIST from ADMIN1.SPONSERS";
+            
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);  
+            
+            while(rs.next() != false)
+                sponserList = rs.getString("url_list");
+            
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: Problems with SQL select");
+            e.printStackTrace();
+        }
+
+        try {
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return sponserList;
     }
 }

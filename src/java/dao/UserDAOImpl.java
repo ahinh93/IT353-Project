@@ -7,6 +7,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -150,5 +151,35 @@ public class UserDAOImpl implements UserDAO {
 
     public ArrayList findByName(String aName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public String retrievePassword(String email) {
+        Connection DBConn = null;
+        String result = "";
+        String driverName = "org.apache.derby.jdbc.ClientDriver";
+        String connStr = "jdbc:derby://localhost:1527/it353finalproject";
+        
+        try {
+            DBHelper.loadDriver(driverName);
+            DBConn = DBHelper.connect2DB(connStr, "admin1", "password");
+            String query = "SELECT password FROM it353finalproject.users WHERE email = '" + email + "'";
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            
+            while(rs.next() != false)
+                result = rs.getString("password");            
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: Problems with SQL select");
+            e.printStackTrace();
+        }
+        try {
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return result;
     }
 }

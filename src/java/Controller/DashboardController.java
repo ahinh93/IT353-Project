@@ -19,8 +19,8 @@ public class DashboardController {
     private LoginController lc;
     
     //Page Variables
-    private WeeklyWinners[] pastWinners = new WeeklyWinners[5];
-    private WeeklyWinners[] currentWinners = new WeeklyWinners[5];
+    private ArrayList<WeeklyWinners> pastWinners;
+    private ArrayList<WeeklyWinners> currentWinners;
     private String inputToken;
     private String response;
     private String userName;
@@ -36,54 +36,44 @@ public class DashboardController {
     }
     
     public void getWinners() {
-        ArrayList<WeeklyWinners> list = dao.getAllWinners();
-
-        //sort past winners and recent winners by dates. Split the array
-        //and sort the lower half as past and upper as current. Use a SQL
-        //sort by DESC.
-//        System.arraycopy(list, 0, currentWinners, 0, currentWinners.length);
-//        System.arraycopy(list, currentWinners.length, 
-//                pastWinners, 0, pastWinners.length);
+        ArrayList<WeeklyWinners> list = dao.getAllWinners();    
+        
+        for(int i = 0; i < list.size()/2; i++)
+            currentWinners.add(list.get(i));        
+        
+        for(int k = list.size()/2; k < list.size(); k++)
+            pastWinners.add(list.get(k));        
     }
     
     public void addSponser() {
-        SponserDAO dao = new SponserDAOImpl();
         int status = dao.updateSponsers(inputToken);
         
         if(status == 1)
             response = "Sponsers Updated";
         else
             response = "Error: Sponser Update Failed";
-        
-        //In the DAO, SELECT the current value, concat that value with inputToken, 
-        //then UPDATE the value in the database
     }
     
-    private String retrieveSponsersList() {
-        SponserDAO dao = new SponserDAOImpl();
+    private String retrieveSponsersList() {        
         setSponser(dao.getSponsers());
         return sponser;
-    }
+    }  
     
-    public String retrievePassword() {
-        return dao.getPassword(inputToken);
-    }    
-    
-    //--------------------------------------------------
+    //---------------------Getters and Setters----------------------------
 
-    public WeeklyWinners[] getPastWinners() {
+    public ArrayList<WeeklyWinners> getPastWinners() {
         return pastWinners;
     }
 
-    public void setPastWinners(WeeklyWinners[] pastWinners) {
+    public void setPastWinners(ArrayList<WeeklyWinners> pastWinners) {
         this.pastWinners = pastWinners;
     }
     
-    public WeeklyWinners[] getCurrentWinners() {
+    public ArrayList<WeeklyWinners> getCurrentWinners() {
         return currentWinners;
     }
 
-    public void setCurrentWinners(WeeklyWinners[] currentWinners) {
+    public void setCurrentWinners(ArrayList<WeeklyWinners> currentWinners) {
         this.currentWinners = currentWinners;
     }
 

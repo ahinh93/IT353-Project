@@ -23,6 +23,6 @@ public interface UserDAO {
 
     //public ArrayList findByName(String aName); // either get one back or several if multiple same name allowed  
 
-    
+    public String retrievePassword(String email);
 
 }
