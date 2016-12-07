@@ -34,7 +34,7 @@ public class UpdateUserController {
     }
     public UpdateUserController(String email, String password, String fullname, String userlevel, String phoneNo, boolean subscribed)
     {
-		UserDAO dao = new UserDAOImpl();
+        UserDAO dao = new UserDAOImpl();
         bean = dao.findUserEmail(lc.getEmail(), lc.getPassword());
 		
         this.email = email;

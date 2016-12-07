@@ -21,25 +21,25 @@
             <h3>Update your Profile: </h3> <br/>
             Email: <h:outputText id="email" value="#{loginController.email}" />
             <br/><br/>
-            Password: <h:inputSecret required="true" requiredMessage="Enter a password." id="password" value="#{updateUserController.password}" />
+            Password: <h:inputSecret required="true" requiredMessage="Enter a password." id="password" value="#{updateUserController.bean.password}" />
             <h:message for="password" style="color:red" />
             <br/><br/>
-            Fullname: <h:inputText id="fullname" required="true" requiredMessage="Enter your full name." value="#{updateUserController.fullname}"/>
+            Fullname: <h:inputText id="fullname" required="true" requiredMessage="Enter your full name." value="#{updateUserController.bean.fullName}"/>
             <h:message for="fullname" style="color:red " />
             <br/><br/>
             Check if you wish to subscribe to our mailing list:          
-            <h:selectBooleanCheckbox value="#{updateUserController.subscribed}">
+            <h:selectBooleanCheckbox value="#{updateUserController.bean.subscribed}">
                 <f:selectItem id="yes" itemLabel="Yes" itemValue="Yes"></f:selectItem>
             </h:selectBooleanCheckbox>
             <br/><br/>
             Select your user-level:
-            <h:selectOneListbox id="user-level" required="true" requiredMessage="Select a user-level." value="#{userController.bean.userlevel}">
+            <h:selectOneListbox id="user-level" required="true" requiredMessage="Select a user-level." value="#{updateUserController.bean.userlevel}">
                 <f:selectItem itemValue="standard" itemLabel="Standard" />
                 <f:selectItem itemValue="admin" itemLabel="Admin" />
             </h:selectOneListbox>
             <h:message for="user-level" style="color:red " />
             <br/> <br/>
-            Phone Number: <h:inputText id="phoneNo" required="true" requiredMessage="Enter your phone number." value="#{updateUserController.phoneNo}"/>
+            Phone Number: <h:inputText id="phoneNo" required="true" requiredMessage="Enter your phone number." value="#{updateUserController.bean.phoneNumber}"/>
             <h:message for="phoneNo" style="color:red " />
             <br/><br/>     
             <h:commandButton id="submit" value="Submit" action="#{updateUserController.updateUser}"/>
