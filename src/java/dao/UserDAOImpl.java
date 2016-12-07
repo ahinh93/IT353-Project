@@ -79,7 +79,8 @@ public class UserDAOImpl implements UserDAO {
                     + "password = '" + bean.getPassword() + "', "
                     + "fullname = '" + bean.getFullName() + "', "
                     + "phonenumber = '" + bean.getPhoneNumber()+ "', "
-                    + "subscribed = '" + bean.isSubscribed()+ "' "                   
+                    + "subscribed = '" + bean.isSubscribed()+ "', "  
+                    + "userlevel = '" + bean.getUserlevel()+ "' "
                     + "WHERE email = '" + bean.getEmail()+ "'";
             
             rowCount = stmt.executeUpdate(insertString);
@@ -144,14 +145,6 @@ public class UserDAOImpl implements UserDAO {
         String query = "SELECT * FROM USERS WHERE email = '" + email + "'" + " AND password = " + "'" + password +"'";
         return retrieveAccount(query);
     }
-
-    public ArrayList findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public ArrayList findByName(String aName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     @Override
     public String retrievePassword(String email) {
@@ -163,7 +156,8 @@ public class UserDAOImpl implements UserDAO {
         try {
             DBHelper.loadDriver(driverName);
             DBConn = DBHelper.connect2DB(connStr, "admin1", "password");
-            String query = "SELECT password FROM it353finalproject.users WHERE email = '" + email + "'";
+            String query = "SELECT password FROM users WHERE email = '" + email + "'";
+            System.out.println("query: "+query);
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             
@@ -179,6 +173,11 @@ public class UserDAOImpl implements UserDAO {
             DBConn.close();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        }
+//        System.out.println("result: "+result.equals(""));
+        if(result.equals(""))
+        {
+            result = "This is not a valid email. Please sign up.";
         }
         return result;
     }

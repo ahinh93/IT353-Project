@@ -22,6 +22,24 @@ public class LoginController {
     private User profile;
     private String email;
     private String password;
+    private String lostEmail;
+
+    public String getLostEmail() {
+        return lostEmail;
+    }
+
+    public void setLostEmail(String lostEmail) {
+        this.lostEmail = lostEmail;
+    }
+    private String lostPassword;
+
+    public String getLostPassword() {
+        return lostPassword;
+    }
+
+    public void setLostPassword(String lostPassword) {
+        this.lostPassword = lostPassword;
+    }
     private String response;
     private int row = 0;
 
@@ -89,7 +107,10 @@ public class LoginController {
     }
     
     public String retrievePassword() {
-        UserDAO dao = new UserDAOImpl();
-        return dao.retrievePassword(email);
+        UserDAO dao = new UserDAOImpl();       
+        lostPassword=dao.retrievePassword(lostEmail);
+        
+        System.out.println("lostpass: "+lostPassword);
+        return lostPassword;
     }
 }

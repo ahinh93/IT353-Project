@@ -6,40 +6,49 @@
     xmlns:p="http://primefaces.org/ui">  
     <h:head>
         <title>Update Profile</title>
+        <style>
+            #form {
+                text-align: center;
+                padding-top: 90px;
+            }
+            
+            
+        </style>
     </h:head>
     <h:body>
-
+        <div id="form">
         <h:form>
             <h3>Update your Profile: </h3> <br/>
             Email: <h:outputText id="email" value="#{loginController.email}" />
-            <br/>
+            <br/><br/>
             Password: <h:inputSecret required="true" requiredMessage="Enter a password." id="password" value="#{updateUserController.password}" />
             <h:message for="password" style="color:red" />
-            <br/>
+            <br/><br/>
             Fullname: <h:inputText id="fullname" required="true" requiredMessage="Enter your full name." value="#{updateUserController.fullname}"/>
             <h:message for="fullname" style="color:red " />
-            <br/>
+            <br/><br/>
             Check if you wish to subscribe to our mailing list:          
             <h:selectBooleanCheckbox value="#{updateUserController.subscribed}">
                 <f:selectItem id="yes" itemLabel="Yes" itemValue="Yes"></f:selectItem>
             </h:selectBooleanCheckbox>
-            <br/>
+            <br/><br/>
             Select your user-level:
-            <h:selectOneListbox id="user-level" required="true" requiredMessage="Select a user-level." value="#{updateUserController.userlevel}">
+            <h:selectOneListbox id="user-level" required="true" requiredMessage="Select a user-level." value="#{updateUserController.bean.userlevel}">
                 <f:selectItem itemValue="standard" itemLabel="Standard" />
                 <f:selectItem itemValue="admin" itemLabel="Admin" />
             </h:selectOneListbox>
             <h:message for="user-level" style="color:red " />
-            <br/> 
+            <br/> <br/>
             Phone Number: <h:inputText id="phoneNo" required="true" requiredMessage="Enter your phone number." value="#{updateUserController.phoneNo}"/>
             <h:message for="phoneNo" style="color:red " />
-            <br/>            
+            <br/><br/>     
             <h:commandButton id="submit" value="Submit" action="#{updateUserController.updateUser}"/>
-            <br/>
+            <br/><br/>
             <h:outputText value="#{updateUserController.updateStatus}" />
             <br/>
-            <h:link value="Home" outcome="index" />
+            <h:link value="Back" outcome="dashboard" />
         </h:form>
+        </div>
     </h:body>
 </html>
 
