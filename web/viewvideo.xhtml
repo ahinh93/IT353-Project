@@ -16,15 +16,20 @@
         </style>
     </h:head>
     <h:body>
+<<<<<<< HEAD
         
          Please feel free leave a rating.
         <div id="back"><p:button id="back" value="Back" outcome="dashboard"/></div>
          <br/><br/>
+=======
+        <h2>Video Submissions</h2>
+        <h3>Please feel free to leave a rating.</h3>
+>>>>>>> origin/master
         <h:form id="searchForm">
-        <h:inputText id="seachTags" value="#{viewAllController.searchTerms}"  />
-        <h:button value="Search"  onclick="#{viewAllController.searchFor()}">
+        <p:inputText id="seachTags" value="#{viewAllController.searchTerms}"  />
+        <p:button value="Search"  onclick="#{viewAllController.searchFor()}">
             <f:ajax event="click" render="winnersTable"/>
-        </h:button><br/><br/>
+        </p:button><br/><br/>
         </h:form>
         <h:dataTable id="winnersTable" value="#{viewAllController.videos}" var="aRow"
                      border="1" cellpadding="2" cellspacing="0">
