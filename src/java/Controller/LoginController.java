@@ -29,16 +29,11 @@ public class LoginController {
     {
         profile = new User();
     }
-    /**
-     * @return the profile
-     */
+
     public User getUser() {
         return getProfile();
     }
 
-    /**
-     * @param profile the profile to set
-     */
     public void setProfile(User profile) {
         this.profile = profile;
     }
@@ -48,69 +43,53 @@ public class LoginController {
         this.email = null;
         row = 0;
     }
-    /**
-     * @return the email
-     */
+
     public String getEmail() {
         return email;
     }
 
-    /**
-     * @param email the email to set
-     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * @return the password
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     * @param password the password to set
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     * @return the response
-     */
     public String getResponse() {
         return response;
     }
 
-    /**
-     * @param response the response to set
-     */
     public void setResponse(String response) {
         this.response = response;
     }
     
-    public String findUserEmail()
-    {
-        UserDAO dao = new UserDAOImpl();       
-        setProfile(dao.findUserEmail(email, password));
+    public String findUserEmail() {
+        UserDAO dao = new UserDAOImpl(); 
+        User user = dao.findUserEmail(email, password);
+        setProfile(user);
         
-        if(getProfile() != null)
-        {
-            return "dashboard.xhtml";
-        }
-        else
-        {
+        if(getProfile() != null) {
+            if(user.getUserlevel().equals("admin"))
+                return "adminDashboard.xhtml";
+            else
+                return "dashboard.xhtml";
+        } else {
             response = "FAILED LOG IN.";          
             return "logIn.xhtml";
         }
     }
-
-    /**
-     * @return the profile
-     */
+    
     public User getProfile() {
         return profile;
     }
     
+    public String retrievePassword() {
+        UserDAO dao = new UserDAOImpl();
+        return dao.retrievePassword(email);
+    }
 }

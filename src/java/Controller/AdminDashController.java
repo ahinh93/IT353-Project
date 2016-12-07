@@ -28,12 +28,6 @@ public class AdminDashController {
         
     }
     
-    
-    
-    public WeeklyWinners getSpecificWinner() {
-        return dao.getWinner(getSearchToken());
-    }
-    
     //--------------------------------------------------
 
     public User getUserBean() {

@@ -64,13 +64,13 @@
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel id="cartImage" header="Adding Image Items to Shopping Cart" style="margin-bottom:25px">
+                <p:panel id="cartImage" header="Search / Add Images to Cart" style="margin-bottom:25px">
                     <h:panelGrid columns="2" cellpadding="10">
                         <h:link value="View All Image Submissions" outcome="viewallsubmissions" />
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel id="cartVideo" header="Adding Video Items to Shopping Cart" style="margin-bottom:25px">
+                <p:panel id="cartVideo" header="Search / Add Videos to Cart" style="margin-bottom:25px">
                     <h:panelGrid columns="2" cellpadding="10">
                         <h:link value="View All Video Submissions" outcome="viewvideo" />
                     </h:panelGrid>
@@ -103,33 +103,25 @@
         
         <div id="weeklyWinners">
             Weekly Winners:            
-            <h:dataTable id="currentWinners">
+            <h:dataTable id="currentWinners" value="#{dashboardController.currentWinners}" var="aRow">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Current Winners"/>
                     </f:facet>
-                    <h:outputText value="Winner 2"/>
-                    <h:outputText value="Winner 3"/>
-                    <h:outputText value="Winner 4"/>
-                    <h:outputText value="Winner 5"/>
+                    <h:outputText value="#{aRow.author}" />
                 </h:column>
             </h:dataTable>
             
             <br/><br/><br/><br/><br/><br/>
             
-            <h:dataTable id="pastWinners">
+            <h:dataTable id="pastWinners" value="#{dashboardController.pastWinners}" var="aRow">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Past Winners" />
                     </f:facet>
-                    <h:outputText value="Winner 1"/>
-                    <h:outputText value="Winner 2"/>
-                    <h:outputText value="Winner 3"/>
-                    <h:outputText value="Winner 4"/>
-                    <h:outputText value="Winner 5"/>
+                    <h:outputText value="#{aRow.author}" />
                 </h:column>
             </h:dataTable>
-            End
         </div>
         
         <div id="sponsers">
