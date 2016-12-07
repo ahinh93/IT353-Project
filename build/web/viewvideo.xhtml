@@ -32,6 +32,7 @@
                         
                         <p:growl id="growl" showDetail="true"/><br/>
                         <p:commandButton value="Add to Cart" action="#{CartController.addToCart()}" actionListener="#{CartController.showVideoGrowl}" update="growl"/>
+                        <p:commandButton value="Make Winner" action="#{viewAllController.makeWinner()}"/>
                     </h:form>
                     
             </h:column>
