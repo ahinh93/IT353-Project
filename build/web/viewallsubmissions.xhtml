@@ -5,24 +5,37 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>View All</title>
+        <title>View All Images</title>
+        <style>
+            #back{
+                position:fixed;
+                right:0;
+                top:0;
+            }
+           
+        </style>
     </h:head>
     <h:body>
-        Please feel free to leave a rating.<br/><br/>
+
+    <h2>Artwork Submissions</h2>
+<h3>Please feel free to leave a rating.</h3>
+        <div id="back"><p:button id="back" value="Back" outcome="dashboard"/></div>
+         <br/><br/>
+
         <h:form id="searchForm">
-        <h:inputText id="seachTags" value="#{viewAllController.searchTerms}"  />
-        <h:button value="Search"  onclick="#{viewAllController.searchFor()}">
+        <p:inputText id="seachTags" value="#{viewAllController.searchTerms}"  />
+        <p:button value="Search"  onclick="#{viewAllController.searchFor()}">
             <f:ajax event="click" render="winnersTable"/>
-        </h:button><br/><br/>
+        </p:button><br/><br/>
         </h:form>
         <h:dataTable id="winnersTable" value="#{viewAllController.images}" var="aRow"
                      border="1" cellpadding="2" cellspacing="0">
             <h:column> 
                     <h:graphicImage id="image" width="350" height="300" url="/image?uid=#{aRow.uid}"/><br/>
                     
-                    url: <h:outputLabel value="#{aRow.youtubeURL}"/><br/>
+                    url: <p:outputLabel value="#{aRow.youtubeURL}"/><br/>
                     
-                    Avg Rating: <h:outputLabel value="#{aRow.rating}"/>
+                    Avg Rating: <p:outputLabel value="#{aRow.rating}"/>
                     <h:form>
                         <p:rating id="rating" value="#{aRow.rating}" cancel="false" >
                             <p:ajax event="rate" listener="#{viewAllController.onrate}"/>

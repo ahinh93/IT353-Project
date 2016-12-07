@@ -71,4 +71,4 @@ INSERT INTO USERS (email,password,fullname,subscribed,userlevel,phonenumber)
 VALUES ('jgarc@ilstu.edu','password','Julian Garcia',true,'admin','3091234657');
 
 INSERT INTO SPONSERS(url_list)
-VALUES ('www.amazon.com www.normal.org');
+VALUES ('www.amazon.com');

@@ -67,9 +67,11 @@ public class DashDAOImpl implements DashDAO {
             String myDB = "jdbc:derby://localhost:1527/it353finalproject";
             DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
 
-            String sponsersList = getSponsers();   
-            sponsersList = sponsersList.concat(" / " + sponser);
-            String query = "UPDATE ADMIN1.SPONSERS SET URL_LIST = '" + sponsersList + "'";
+            //String sponsersList = getSponsers();   
+            //sponsersList = sponsersList.concat(" / " + sponser);
+            //String query = "UPDATE ADMIN1.SPONSERS SET URL_LIST = '" + sponsersList + "'";
+            
+            String query = "INSERT INTO SPONSERS VALUES'" + sponser + "'";
             
             Statement stmt = DBConn.createStatement();
             status = stmt.executeUpdate(query);            
@@ -92,21 +94,25 @@ public class DashDAOImpl implements DashDAO {
     @Override
     public String getSponsers() {
         Connection DBConn = null;
-        String sponserList = "a";
+        String sponserList = "";
         
         try {
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
             String myDB = "jdbc:derby://localhost:1527/it353finalproject";
             DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
 
-            String query = "SELECT URL_LIST from ADMIN1.SPONSERS";
+            //String query = "SELECT URL_LIST from ADMIN1.SPONSERS";
+            String query = "select * from SPONSERS";
+            
             
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(query);  
             
-            while(rs.next() != false)
-                sponserList = rs.getString("url_list");
-            
+            while(rs.next())
+            {
+                sponserList += rs.getString("url_list") + " ";
+                
+            }
             rs.close();
             stmt.close();
         } catch (Exception e) {
@@ -119,7 +125,7 @@ public class DashDAOImpl implements DashDAO {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-
+        System.out.println("sponsors: " +sponserList);
         return sponserList;
     }
 }

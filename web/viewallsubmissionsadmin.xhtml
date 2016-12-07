@@ -6,14 +6,36 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>View All</title>
+        <style>
+            #divider{
+                width:65px;
+                height:auto;
+                display:inline-block;
+            }
+            
+            #back{
+                position:fixed;
+                right:0;
+                top:0;
+            }
+           
+        </style>
     </h:head>
     <h:body>
-        Please feel free to leave a rating.<br/><br/>
+<<<<<<< HEAD
+        
+        Please feel free to leave a rating.
+        <div id="back"><p:button id="back" value="Back" outcome="adminDashboard"/></div>
+        <br/><br/>
+=======
+        <h2>Artwork Submissions</h2>
+        <h3>Please feel free to leave a rating.</h3>
+>>>>>>> origin/master
         <h:form id="searchForm">
-        <h:inputText id="seachTags" value="#{viewAllController.searchTerms}"  />
-        <h:button value="Search"  onclick="#{viewAllController.searchFor()}">
+        <p:inputText id="seachTags" value="#{viewAllController.searchTerms}"  />
+        <p:button value="Search"  onclick="#{viewAllController.searchFor()}">
             <f:ajax event="click" render="winnersTable"/>
-        </h:button><br/><br/>
+        </p:button><br/><br/>
         </h:form>
         <h:dataTable id="winnersTable" value="#{viewAllController.images}" var="aRow"
                      border="1" cellpadding="2" cellspacing="0">
@@ -32,6 +54,7 @@
                         
                         <p:growl id="growl" showDetail="true"/><br/>
                         <p:commandButton value="Add to Cart" action="#{CartController.addToCart()}" actionListener="#{CartController.showMessageGrowl}" update="growl"/>
+                        <div id="divider"/>
                         <p:commandButton value="Make Winner" action="#{viewAllController.makeWinner()}"/>
                     </h:form>
                     

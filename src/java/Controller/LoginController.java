@@ -98,7 +98,7 @@ public class LoginController {
                 return "dashboard.xhtml";
         } else {
             response = "FAILED LOG IN.";          
-            return "logIn.xhtml";
+            return "";
         }
     }
     
