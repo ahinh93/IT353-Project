@@ -10,8 +10,8 @@
             #buttons {
                 position: absolute;
                 left: 0;
-                height: 775px;
-                width: 1375px;
+                height: 90%;
+                width: 80%;
                 padding-top: 35px;
                 padding-left: 35px;                
             }
@@ -34,8 +34,8 @@
                 text-align: center;
             }
             
-            #sponsers {
-                position: absolute;
+            #sponsors {
+                position: fixed;
                 bottom: 0;
                 width: 99.1%;
                 height: 38px;
@@ -93,7 +93,7 @@
                         <h:outputText value="Enter a URL to a sponser you'd like to add:" />
                         <h:form>
                             <h:inputText value="#{dashboardController.inputToken}" />
-                            <h:commandButton value="Add Sponser" action="#{dashboardController.addSponser()}" /> &#160;
+                            <h:commandButton value="Add Sponsor" action="#{dashboardController.addSponser()}" /> &#160;
                             <h:outputText value="#{dashboardController.response}"/>
                         </h:form>
                     </h:panelGrid>
@@ -124,8 +124,8 @@
             </h:dataTable>
         </div>
         
-        <div id="sponsers">
-            <h:outputText value="Our Sponsers"/><br/>
+        <div id="sponsors">
+            <h:outputText value="Our Sponsors"/><br/>
             <h:outputText value="#{dashboardController.sponser}"/><br/>
         </div>
     </h:body>

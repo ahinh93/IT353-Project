@@ -49,9 +49,9 @@ public class DashboardController {
         int status = dao.updateSponsers(inputToken);
         
         if(status == 1)
-            response = "Sponsers Updated";
+            response = "Sponsors Updated";
         else
-            response = "Error: Sponser Update Failed";
+            response = "Error: Sponsor Update Failed";
     }
     
     private String retrieveSponsersList() {        
