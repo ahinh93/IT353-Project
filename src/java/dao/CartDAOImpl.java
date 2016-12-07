@@ -28,7 +28,7 @@ public class CartDAOImpl implements CartDAO{
         String query = "select * from cart where email = '"+ uid+"'";
         ArrayList<Cart> myCart = new ArrayList<Cart>();
         DBHelper.loadDriver("org.aoache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
         
         Cart item = null;
@@ -67,7 +67,7 @@ public class CartDAOImpl implements CartDAO{
     private void getItemPrice(Cart item, int mediaID)
     {
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         String query = "select * from media where uid="+mediaID;
         Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
         

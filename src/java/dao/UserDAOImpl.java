@@ -32,7 +32,7 @@ public class UserDAOImpl implements UserDAO {
 
         try {
             
-            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
             Connection DBConn = DriverManager.getConnection(myDB, "admin1", "password");
             String insertString;
             Statement stmt = DBConn.createStatement();
@@ -70,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
 
         try {
             
-            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
             Connection DBConn = DriverManager.getConnection(myDB, "admin1", "password");
             String insertString;
             Statement stmt = DBConn.createStatement();
@@ -97,7 +97,7 @@ public class UserDAOImpl implements UserDAO {
         User bean = null;
         try {
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
             DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
 
             Statement stmt = DBConn.createStatement();
@@ -151,7 +151,7 @@ public class UserDAOImpl implements UserDAO {
         Connection DBConn = null;
         String result = "";
         String driverName = "org.apache.derby.jdbc.ClientDriver";
-        String connStr = "jdbc:derby://localhost:1527/it353finalproject";
+        String connStr = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         
         try {
             DBHelper.loadDriver(driverName);

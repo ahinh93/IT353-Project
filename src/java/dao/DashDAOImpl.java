@@ -14,8 +14,8 @@ import model.*;
 public class DashDAOImpl implements DashDAO {
     
     private final String driverName = "org.apache.derby.jdbc.ClientDriver";
-    private final String connStr = "jdbc:derby://localhost:1527/it353finalproject";
-    
+    private final String connStr = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
+
     public DashDAOImpl() { 
     }   
     
@@ -64,7 +64,7 @@ public class DashDAOImpl implements DashDAO {
         
         try {
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
             DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
 
             //String sponsersList = getSponsers();   
@@ -98,7 +98,7 @@ public class DashDAOImpl implements DashDAO {
         
         try {
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
             DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
 
             //String query = "SELECT URL_LIST from ADMIN1.SPONSERS";

@@ -39,7 +39,7 @@ public class MediaDAOImpl implements MediaDAO{
     
     private static Media loadMediaFromDB(String query){
         DBHelper.loadDriver("org.aoache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
         
         Media aMedia = null;

@@ -15,10 +15,10 @@ and open the template in the editor.
             #buttons {
                 position: absolute;
                 left: 0;
-                height: 775px;
-                width: 1375px;
-                padding-left: 35px;
-                padding-top: 10px;
+                height: 90%;
+                width: 80%;
+                padding-top: 35px;
+                /*padding-left: 35px;*/ 
             }
             
             #loginStatus {
@@ -32,15 +32,15 @@ and open the template in the editor.
             #weeklyWinners {
                 position: absolute;
                 right: 0;
-                width: 220px;
-                height: 675px;
-                padding-right: 15px;
+                width: 20%;
+                height: 100%;
+                /*padding-right: 15px;*/
                 padding-top: 25px;
                 text-align: center;
             }
             
-            #sponsers {
-                position: absolute;
+            #sponsors {
+                position: fixed;
                 bottom: 0;
                 width: 99.1%;
                 height: 38px;
@@ -135,8 +135,8 @@ and open the template in the editor.
             </h:dataTable>
         </div>
         
-        <div id="sponsers">
-            <h:outputText value="Our Sponsers"/><br/>
+        <div id="sponsors">
+            <h:outputText value="Our Sponsors"/><br/>
             <h:outputText value="#{dashboardController.sponser}"/><br/>
         </div>
     </h:body>

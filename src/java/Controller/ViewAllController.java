@@ -78,7 +78,7 @@ public class ViewAllController {
     public void getAllImages(){
         
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
        String query = "select * from media";
       Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
      images = new ArrayList<Media>();
@@ -108,7 +108,7 @@ public class ViewAllController {
       System.out.println("handle rating called with rating: "+rating+" and uid of "+uid);
       if(rating==0)return;
       DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-      String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
       String query = "update media set rating = "+rating+" where uid = "+uid;
       Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
       
@@ -149,7 +149,7 @@ public class ViewAllController {
        //searchTerms is what we need to look for in the db.
        
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
        String query = "select * from media where tags like '%"+searchTerms+"%'";
       Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
      images = new ArrayList<Media>();
@@ -204,7 +204,7 @@ public class ViewAllController {
     
     public void makeWinner(){
        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
        
        String mediaID = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("uidKey");
        

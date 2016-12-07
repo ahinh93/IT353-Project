@@ -76,7 +76,7 @@ public class UploadController {
     public String getLatestID() {
         latestID="";
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
        String query = "select * from media";
       Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
       
@@ -111,7 +111,7 @@ public class UploadController {
 //            return "failedupload.xhtml";
 //        }
        DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
        String query = "insert into media (url, price, author, tags)"
         + " values (?, ?, ?, ?)";
       Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
@@ -230,7 +230,7 @@ public class UploadController {
    public String youtubeHelper(){
        
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-       String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
        String query = "insert into media (youtubelink, price, author, tags)"
         + " values (?, ?, ?, ?)";
       Connection DBConn = DBHelper.connect2DB(myDB, "admin1", "password");

@@ -23,7 +23,7 @@ public class WeeklyWinnersDAOImpl implements WeeklyWinnersDAO{
     public ArrayList<WeeklyWinners> findAllWinners() {
     
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         String query = "select * from weeklywinners";
         Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
         
@@ -64,7 +64,7 @@ public class WeeklyWinnersDAOImpl implements WeeklyWinnersDAO{
     @Override
     public void getAuthorsForWinners(WeeklyWinners winner, int id){
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         String query = "select * from media where uid="+id;
         Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
         
@@ -94,7 +94,7 @@ public class WeeklyWinnersDAOImpl implements WeeklyWinnersDAO{
     @Override
     public void payoutForWinner(Date date){
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         String query = "update weeklywinners set beenpaid=true WHERE win_date=('"+date.toString()+"')";
         
         int row = -453;

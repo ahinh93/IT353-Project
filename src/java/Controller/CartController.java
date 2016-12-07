@@ -56,7 +56,7 @@ public class CartController {
         //System.out.println("Adding media: " + mediaID +" to the cart table");
         
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         String query = "insert into cart (email,media_id) values (?,?)";
         Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
         
@@ -89,7 +89,7 @@ public class CartController {
         
         
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         String query = "select * from cart where email = '" + lc.getEmail()+"'";
         System.out.println("query: " + query);
         Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
@@ -141,7 +141,7 @@ public class CartController {
     {
         String tempAuthor;
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         String query = "select author from media where uid = " + mediaID;
         System.out.println("query: " + query);
         Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
@@ -167,7 +167,7 @@ public class CartController {
     {
         double itemprice;
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         String query = "select price from media where uid = " + mediaID;
         System.out.println("query: " + query);
         Connection DBConn = DBHelper.connect2DB(myDB,"admin1","password");
@@ -217,7 +217,7 @@ public class CartController {
     public String deleteFromCartTable()
     {
         DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-        String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
         //DELETE FROM CART WHERE email = 'ahinh@ilstu.edu' and media_id = 202;
         String query = "DELETE FROM CART WHERE EMAIL = ?";
         System.out.println("query: " + query);

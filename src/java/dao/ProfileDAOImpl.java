@@ -31,7 +31,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 
         try {
             
-            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
             Connection DBConn = DriverManager.getConnection(myDB, "admin1", "password");
             String insertString;
             Statement stmt = DBConn.createStatement();
@@ -69,7 +69,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 
         try {
             
-            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
             Connection DBConn = DriverManager.getConnection(myDB, "admin1", "password");
             String insertString;
             Statement stmt = DBConn.createStatement();
@@ -96,7 +96,7 @@ public class ProfileDAOImpl implements ProfileDAO {
         ProfileBean bean = new ProfileBean();
         try {
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-            String myDB = "jdbc:derby://localhost:1527/it353finalproject";
+        String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
             DBConn = DBHelper.connect2DB(myDB, "admin1", "password");
 
             Statement stmt = DBConn.createStatement();
