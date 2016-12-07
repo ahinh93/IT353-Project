@@ -79,7 +79,8 @@ public class UserDAOImpl implements UserDAO {
                     + "password = '" + bean.getPassword() + "', "
                     + "fullname = '" + bean.getFullName() + "', "
                     + "phonenumber = '" + bean.getPhoneNumber()+ "', "
-                    + "subscribed = '" + bean.isSubscribed()+ "' "                   
+                    + "subscribed = '" + bean.isSubscribed()+ "', "  
+                    + "userlevel = '" + bean.getUserlevel()+ "' "
                     + "WHERE email = '" + bean.getEmail()+ "'";
             
             rowCount = stmt.executeUpdate(insertString);
@@ -143,14 +144,6 @@ public class UserDAOImpl implements UserDAO {
     public User findUserEmail(String email, String password) {
         String query = "SELECT * FROM USERS WHERE email = '" + email + "'" + " AND password = " + "'" + password +"'";
         return retrieveAccount(query);
-    }
-
-    public ArrayList findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public ArrayList findByName(String aName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override

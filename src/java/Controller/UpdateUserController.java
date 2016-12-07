@@ -30,10 +30,13 @@ public class UpdateUserController {
 
     public UpdateUserController()
     {
-        
+        bean = new User();
     }
     public UpdateUserController(String email, String password, String fullname, String userlevel, String phoneNo, boolean subscribed)
     {
+		UserDAO dao = new UserDAOImpl();
+        bean = dao.findUserEmail(lc.getEmail(), lc.getPassword());
+		
         this.email = email;
         this.password = password;
         this.fullname = fullname;
@@ -98,10 +101,11 @@ public class UpdateUserController {
     }
     
     public void updateUser() {
-        UserDAO dao = new UserDAOImpl();    // Creating a new object each time.    
+        UserDAO dao = new UserDAOImpl();        
         //bean = lc.getProfile();
-        bean = new User(lc.getEmail(), password, fullname, phoneNo, subscribed, userlevel); 
-        int status = dao.updateUser(bean); // Doing anything with the object after this?
+        //setBean(new User(lc.getEmail(), password, fullname, phoneNo, subscribed, userlevel)); 
+        bean.setEmail(lc.getEmail());
+        int status = dao.updateUser(bean); 
         if (status != 0) {
             setUpdateStatus("Profile updated successfully");
         } else {
@@ -163,6 +167,31 @@ public class UpdateUserController {
      */
     public void setLc(LoginController lc) {
         this.lc = lc;
+    }
+	
+	public String retrieveUser()
+    {
+        System.out.print("@@@@@@@@@@@@@@@@@@@@");
+        UserDAO dao = new UserDAOImpl();    // Creating a new object each time.
+        bean = dao.findUserEmail(lc.getEmail(), lc.getPassword()); // Doing anything with the object after this?
+        if (bean != null) 
+            return "update.xhtml"; // navigate to "update2.xhtml"
+        else
+            return "error.xhtml"; 
+    }
+	
+	    /**
+     * @return the bean
+     */
+    public User getBean() {
+        return bean;
+    }
+
+    /**
+     * @param bean the bean to set
+     */
+    public void setBean(User bean) {
+        this.bean = bean;
     }
     
 }
