@@ -30,8 +30,7 @@
                 <h:commandButton id="submit" value="Login Into Account" action="#{loginController.findUserEmail()}"></h:commandButton> <br/>
                 <h:outputText id="response" style="text-decoration-color: red" value="#{loginController.response}" />            
             </h:form> <br/>
-            <h:commandButton id="getPass" value="Retrieve Lost Password" action="#{loginController.retrievePassword()}" />
-            <h:outputText value="#{loginController.password}" />
+            <h:button id="getPass" value="Retrieve Lost Password" outcome="getpass"/>
         </div>
     </h:body>
 </html>

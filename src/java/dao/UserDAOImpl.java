@@ -163,7 +163,8 @@ public class UserDAOImpl implements UserDAO {
         try {
             DBHelper.loadDriver(driverName);
             DBConn = DBHelper.connect2DB(connStr, "admin1", "password");
-            String query = "SELECT password FROM it353finalproject.users WHERE email = '" + email + "'";
+            String query = "SELECT password FROM users WHERE email = '" + email + "'";
+            System.out.println("query: "+query);
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             
@@ -179,6 +180,11 @@ public class UserDAOImpl implements UserDAO {
             DBConn.close();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        }
+//        System.out.println("result: "+result.equals(""));
+        if(result.equals(""))
+        {
+            result = "This is not a valid email. Please sign up.";
         }
         return result;
     }
