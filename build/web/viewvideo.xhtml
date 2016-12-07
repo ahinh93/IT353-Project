@@ -6,10 +6,20 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Video Submissions</title>
+        <style>
+            #back{
+                position:fixed;
+                right:0;
+                top:0;
+            }
+           
+        </style>
     </h:head>
     <h:body>
         
-         Please feel free leave a rating.<br/><br/>
+         Please feel free leave a rating.
+        <div id="back"><p:button id="back" value="Back" outcome="dashboard"/></div>
+         <br/><br/>
         <h:form id="searchForm">
         <h:inputText id="seachTags" value="#{viewAllController.searchTerms}"  />
         <h:button value="Search"  onclick="#{viewAllController.searchFor()}">
@@ -32,7 +42,6 @@
                         
                         <p:growl id="growl" showDetail="true"/><br/>
                         <p:commandButton value="Add to Cart" action="#{CartController.addToCart()}" actionListener="#{CartController.showVideoGrowl}" update="growl"/>
-                        <p:commandButton value="Make Winner" action="#{viewAllController.makeWinner()}"/>
                     </h:form>
                     
             </h:column>
