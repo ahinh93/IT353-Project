@@ -43,8 +43,10 @@ public class LoginController {
         this.profile = profile;
     }
 
-    public void killProfile(){
+    public void killProfile(){                
         this.profile = null;
+        this.email = null;
+        row = 0;
     }
     /**
      * @return the email
