@@ -114,7 +114,7 @@ public class UserDAOImpl implements UserDAO {
                 phoneNo = rs.getString("phonenumber");
                 verified = rs.getBoolean("verified");
                 
-                System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@email: " +email +"\npassword: "+ password);
+                System.out.println("email: " +email +"\npassword: "+ password);
                 
 
                 

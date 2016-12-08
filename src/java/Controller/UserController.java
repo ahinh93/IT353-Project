@@ -55,7 +55,7 @@ public class UserController {
         UserDAO dao = new UserDAOImpl();    // Creating a new object each time.
         int rowCount = dao.createUser(getBean()); // Doing anything with the object after this?
         if (rowCount == 1) {
-            return "loggedIn.xhtml"; // navigate to "response.xhtml"
+            return "logIn.xhtml"; // navigate to "response.xhtml"
         } else {
             return "error.xhtml";
         }

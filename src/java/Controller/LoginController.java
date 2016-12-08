@@ -92,7 +92,8 @@ public class LoginController {
         setProfile(user);
         
         if(getProfile() != null) {
-            if(user.getUserlevel().equals("admin"))
+            System.out.println("admin?: "+ user.getUserlevel());
+            if(user.getUserlevel().toLowerCase().equals("admin"))
                 return "adminDashboard.xhtml";
             else
                 return "dashboard.xhtml";

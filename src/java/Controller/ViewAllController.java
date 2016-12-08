@@ -51,7 +51,7 @@ public class ViewAllController {
         this.uid = uid;
     }
     public List getImages() {
-        if(searchTerms == null){
+        if(searchTerms == null || searchTerms.equals("")){
             getAllImages();
         }else
         {
@@ -173,7 +173,7 @@ public class ViewAllController {
              System.err.println("Got an exception!");
              System.err.println(e.getMessage());
         } 
-       
+       searchTerms = "";
    }
 
   

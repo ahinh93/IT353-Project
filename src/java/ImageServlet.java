@@ -31,7 +31,9 @@ public class ImageServlet extends HttpServlet {
             byte [] imageBytes = null;
             System.out.println(request.getParameter("uid"));
             DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
-            Connection con = DBHelper.connect2DB("jdbc:derby://localhost:1527/it353finalproject", "admin1", "password");
+            String myDB = "jdbc:derby://gfish2.it.ilstu.edu:1527/jalltop_Fa2016_it353finalproject";
+
+            Connection con = DBHelper.connect2DB(myDB, "admin1", "password");
             
             PreparedStatement ps = con.prepareStatement("Select url from media where uid="+request.getParameter("uid"));
             
