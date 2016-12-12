@@ -102,7 +102,14 @@ public class LoginController {
             return "";
         }
     }
-    
+    public String correctDashboard() {
+        
+        System.out.println("admin?: "+ this.profile.getUserlevel());
+        if(this.profile.getUserlevel().toLowerCase().equals("admin"))
+            return "adminDashboard.xhtml";
+        else
+            return "dashboard.xhtml";
+    }
     public User getProfile() {
         return profile;
     }

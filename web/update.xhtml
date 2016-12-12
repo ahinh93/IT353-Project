@@ -42,11 +42,9 @@
             Phone Number: <h:inputText id="phoneNo" required="true" requiredMessage="Enter your phone number." value="#{updateUserController.bean.phoneNumber}"/>
             <h:message for="phoneNo" style="color:red " />
             <br/><br/>     
-            <h:commandButton id="submit" value="Submit" action="#{updateUserController.updateUser}"/>
-            <br/><br/>
+            <h:commandButton id="submit" value="Submit" action="#{updateUserController.updateUser}"/> 
+            <h:commandButton id="back" value="Back" action="#{loginController.correctDashboard()}"/>
             <h:outputText value="#{updateUserController.updateStatus}" />
-            <br/>
-            <p:button value="Back" id="back" outcome="dashboard"/>
         </h:form>
         </div>
     </h:body>

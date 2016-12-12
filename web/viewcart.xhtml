@@ -11,9 +11,10 @@ and open the template in the editor.
     xmlns:p="http://primefaces.org/ui">  
     <h:head>
         <title>#{loginController.email}'s Cart</title>
-
+        
     </h:head>
     <h:body>
+        
         <h:form>            
             <p:dataTable var="cart" value="#{CartController.myCart}">
                 <p:column headerText="Email">
@@ -30,8 +31,7 @@ and open the template in the editor.
             </p:dataTable>            
             <input type="hidden" name="mediaIDkey" value="#{cart.mediaID}"/>
             <p:commandButton value="Purchase Cart" action="#{CartController.checkout()}"/>
-            
-            <div><p:button id="back" value="Back" outcome="dashboard"/></div>
+            <h:commandButton id="back" value="Back" action="#{loginController.correctDashboard()}"/>
         </h:form>
     </h:body>
 </html>

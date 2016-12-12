@@ -29,11 +29,11 @@
                 </h:inputSecret>
                 <h:message for="password" style="color:red" />
                 <br/><br/>  
-                <h:commandButton id="submit" value="Login Into Account" action="#{loginController.findUserEmail()}"></h:commandButton> <br/>
+                <p:commandButton id="submit" value="Login Into Account" action="#{loginController.findUserEmail()}"></p:commandButton> <br/>
                 <h:outputText id="response" style="text-decoration-color: red" value="#{loginController.response}" />            
             </h:form> <br/>
-            <h:button id="getPass" value="Retrieve Lost Password" outcome="getpass"/> <br/><br/>
-            <h:button id="back" value="Back" outcome="main"/>
+            <p:button id="getPass" value="Retrieve Lost Password" outcome="getpass"/> <br/><br/>
+            <p:button id="back" value="Back" outcome="main"/>
         </div>
     </h:body>
 </html>
