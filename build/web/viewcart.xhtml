@@ -11,7 +11,7 @@ and open the template in the editor.
     xmlns:p="http://primefaces.org/ui">  
     <h:head>
         <title>#{loginController.email}'s Cart</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     </h:head>
     <h:body>
         <h:form>            
@@ -29,9 +29,9 @@ and open the template in the editor.
                 </p:column>
             </p:dataTable>            
             <input type="hidden" name="mediaIDkey" value="#{cart.mediaID}"/>
-            <h:commandButton value="Purchase Cart" action="#{CartController.checkout()}"/>
+            <p:commandButton value="Purchase Cart" action="#{CartController.checkout()}"/>
             
-            
+            <div><p:button id="back" value="Back" outcome="dashboard"/></div>
         </h:form>
     </h:body>
 </html>
