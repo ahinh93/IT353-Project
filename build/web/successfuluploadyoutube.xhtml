@@ -5,16 +5,30 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Upload</title>
+        <style>
+            #back{
+                position:fixed;
+                right:0;
+                top:0;
+            }
+           
+        </style>
     </h:head>
     <h:body>
+        <div id="back">
+            <p:button id="back" value="Back" outcome="dashboard"/>
+        </div>
+        
         <h2>Upload completed!</h2>
-        <h4>What a beautiful work of art!</h4> <h:link outcome="dashboard" value="back"/>
+        <h4>What a beautiful work of art!</h4> 
         
         <p>We hope that you enjoyed creating this! Everyone can't win but remember to keep an eye
             on your email we chose a winner every week to get a random amount cash prize.<br/>
             You can increase your chances of winning by submitting more images.</p>
         
         <p:media id="youtubeVide" value="http://www.youtube.com/v/#{uploadController.latestYouTube}" width="350" height="300" player="flash" /><br/>
-
+        <h:form>
+            <h:commandButton id="back" value="Back" action="#{loginController.correctDashboard()}"/>
+        </h:form>
     </h:body>
 </html>

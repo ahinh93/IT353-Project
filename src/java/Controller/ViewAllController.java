@@ -178,7 +178,7 @@ public class ViewAllController {
 
   
     public List<Media> getVideos() {
-        if(searchTerms == null){
+        if(searchTerms.equals("")){
             getAllImages();
         }else
         {
