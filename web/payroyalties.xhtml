@@ -6,8 +6,19 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Payout</title>
+         <style>
+            #back{
+                position:fixed;
+                right:0;
+                top:0;
+            }
+            
+        </style>
     </h:head>
     <h:body>
+        <div id="back">
+            <p:button value="Back" id="back" outcome="dashboard"/>
+        </div>
         <h2>Here is a table of the weekly winners</h2><br/>
         <h:form id="payoutForm">
             <p:dataTable id="winnersTable" value="#{weeklyWinnersController.winners}" var="aRow">
@@ -33,7 +44,6 @@
                             var="winner" itemValue="#{winner.date}" itemLabel="#{winner.date}" />
          </p:selectOneMenu><br/>
          <p:commandButton value="Payout" action="#{weeklyWinnersController.payoutWinner()}"/>
-         <p:button value="Back" outcome="dashboard"/>         
         
       </h:form> 		
        
