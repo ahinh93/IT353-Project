@@ -33,12 +33,22 @@ public class UploadController {
     private String response;
     private Part media;
     private String latestID;
+    private String latestYouTube;
+
+    public String getLatestYouTube() {
+        return latestYouTube;
+    }
+
+    public void setLatestYouTube(String latestYouTube) {
+        this.latestYouTube = latestYouTube;
+    }
     
     private String price;
     private String tags;
     private String youtubeURL;
 
     public String getYoutubeURL() {
+        getLatestID();
         return youtubeURL;
     }
 
@@ -86,6 +96,7 @@ public class UploadController {
            
            while(rs.next()){
               latestID =""+ rs.getInt("uid");
+              latestYouTube ="" +rs.getString("youtubelink");
            }
        
             rs.close();
