@@ -8,3 +8,9 @@
 *.class
 
 *.class
+
+nbproject/private/private.properties
+
+nbproject/ant-deploy.xml
+
+nbproject/project.properties
