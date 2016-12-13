@@ -6,9 +6,24 @@
     xmlns:p="http://primefaces.org/ui">  
     <h:head>
         <title>Update Profile</title>
+        <style>
+            #form {
+                text-align: center;
+                padding-top: 90px;
+            }
+            #back{
+                    position:fixed;
+                    right:0;
+                    top:0;
+                }    
+        </style>
     </h:head>
     <h:body>
-
+        <div id="back">
+            <h:form>
+                <p:commandButton id="back" value="Back" action="#{loginController.correctDashboard()}"/>                
+            </h:form>
+        </div>
         <div id="form">
         <h:form>
             <h3>Update your Profile: </h3> <br/>
@@ -35,13 +50,11 @@
             Phone Number: <h:inputText id="phoneNo" required="true" requiredMessage="Enter your phone number." value="#{updateUserController.bean.phoneNumber}"/>
             <h:message for="phoneNo" style="color:red " />
             <br/><br/>     
-            <h:commandButton id="submit" value="Submit" action="#{updateUserController.updateUser}"/> 
+            <p:commandButton id="submit" value="Submit" action="#{updateUserController.updateUser}"/> 
             <h:outputText value="#{updateUserController.updateStatus}" />
 
         </h:form>
-        <h:form>
-            <h:commandButton id="back" value="Back" action="#{loginController.correctDashboard()}"/>
-        </h:form>
+        
         </div>
     </h:body>
 </html>

@@ -19,6 +19,7 @@
     <h:body>
         <div id="login">
             <h:form id="loginForm">
+                <p:focus/>
                 Email: <h:inputText id="email" label="email" required="true" requiredMessage="Email is required." value="#{loginController.email}">    
                     <f:validateLength minimum="6" />
                 </h:inputText>
