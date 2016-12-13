@@ -31,7 +31,7 @@ and open the template in the editor.
             </p:dataTable>            
             <input type="hidden" name="mediaIDkey" value="#{cart.mediaID}"/>
             <p:commandButton value="Purchase Cart" action="#{CartController.checkout()}"/>
-            <h:commandButton id="back" value="Back" action="#{loginController.correctDashboard()}"/>
+            <p:commandButton id="back" value="Back" action="#{loginController.correctDashboard()}"/>
         </h:form>
     </h:body>
 </html>
